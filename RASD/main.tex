@@ -3,6 +3,9 @@
 \usepackage{float}
 \usepackage[table]{xcolor}
 \usepackage[<opzioni>]{frontespizio}
+\usepackage{listing}
+\usepackage{enumitem}
+\setlist[enumerate]{label*=\arabic*.}
 
 \definecolor{color1}{HTML}{C5CAE9}
 \definecolor{color2}{HTML}{E8EAF6}
@@ -13,19 +16,24 @@
 \begin{document}
 
 \input{frontespizio.tex}
+
 \normalfont
 \newpage
 
-\part{Informal description of the problem}
+%\part{Informal description of the problem}
 
-\input{introduction.tex}
+    \input{introduction.tex}
+    \input{overallDescription.tex}
+    \input{specificRequirements.tex}
 
-\input{overallDescription.tex}
+%\part{Formal description of the problem}
 
-\chapter{Specific Requirements}
+    \input{specificRequirements.tex}
+    \input{FormalAnalysisUsingAlloy.tex}
 
-\chapter{Formal analysis using alloy}
+%\part{}
 
-\input{effortSpent.tex}
+    \input{effortSpent.tex}
+
 
 \end{document}

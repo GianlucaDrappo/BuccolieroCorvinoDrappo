@@ -1,0 +1,30 @@
+\section{Purpose}
+    This document will provide an analysis of requirements and specifications of three new services the \emph{TrackMe} company is willing to launch.\\
+    \emph{TrackMe} is a company that wants to develop a software-based service allowing Third-parties to monitor the location and health status of individuals.
+    Said services are described below.
+
+\subsection{Data4Help}
+    \textbf{\emph{Data4Help}} allows \emph{TrackMe} to gather data from Users and to provide them to Third-parties upon request. In particular, it has the following goals:
+    \begin{enumerate}[label={[}G1.\arabic*{]}]
+        \item Third-parties have to be able to monitor the location and health status of Individuals.
+        \item Third-parties have to be able to request data of an Individual through his/her fiscal code.
+        \item Third-parties have to be able to request data of groups of Individuals.
+        \item Third-parties have to be able to subscribe to user data, specifying the frequency of updates and the desired granularity of data.
+        \item Individuals have to be able to decide whether share their not anonymised data (gathered through smart devices) or not and to see what they are sharing to whom.
+    \end{enumerate}
+
+\subsection{AutomatedSOS}    
+    \textbf{\emph{AutomatedSOS}} lets Third-parties provide assistance to Elderly people in case of sudden illness by sending them an ambulance. Hence, its goals are:
+    \begin{enumerate}[label={[}G2.\arabic*{]}]
+        \item Elderly people's health status has to be constantly monitored.
+        \item An ambulance has to arrive to Elderly people's location when their vital signs go below a certain threshold.
+        %specify threshold?
+    \end{enumerate}
+    
+\subsection{Track4Run}
+    \textbf{\emph{Track4Run}} allows the organisation of runs, the subscription to them and the tracking of runners through \emph{Data4Help} gathered location. These are the objective the service aims to achieve:
+    \begin{enumerate}[label={[}G3.\arabic*{]}]
+        \item Organisers have to be able to define the details of runs.
+        \item Runners have to be able to enrol to runs.
+        \item Visitors have to be able to track Participants' position on a map.
+    \end{enumerate}

@@ -1,0 +1,85 @@
+\section{Product functions}
+
+In this section there is an analysis of functional requirements (group by three main services) that the application need to reach the main goals. 
+
+
+
+\subsection{Data4Help}
+\begin{enumerate}[label={[}R1.\arabic*{]}]
+
+    \item During registration, the system requires name, surname, fiscal code, password and email in order to create a new user account.
+    \newline
+    \item During registration, the system requires the company name, VAT number, email and password in order to create a new third-party account.
+    
+    \item The application retrieves from smart-watches the following data, associating them to the user: 
+    \begin{itemize}
+        \item beats per minute ( bpm );
+        \item number of steps;
+        \item location;
+        \item time-stamp of the measurement.
+    \end{itemize}
+    
+    \item The system allows to third-parties to request data of single users and to users to accept or refused them. 
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item If the user accepts, the system send to third-party all the data gathered from the specified user.
+    
+        \item If the user refused or he is not registered, the system sends to third-party an error message.
+    \end{enumerate}
+    
+    \item Upon third-parties request, the system can perform parametric searches based on geographical areas, age, genre, time of the day. The result of the query is then stored and evaluated for approval.
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item If the request is approved, the saved data is provided to third-party.
+        \item if the request is not approved, an error message is sent to the third-party.
+        \item In order to anonimize data, the application only sends information related to the health status of individuals (e.g. bpm, step).
+    \end{enumerate}
+        
+    \item The application allows third-parties to subscribe to certain date
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item The application, if third-party subscribed to some data (specific users or group searches), sends updates to the third-party aggregating the data with the specified granularity and frequency.
+    \end{enumerate}
+        
+    \item The application allows withdrawals of consent for accessing their data and third-party unsubscriptions.
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item If the user withdraws consent for the access of his data, a message is sent to the subscribed third-party and data is no longer provided.
+        \item If the third-party no longer wishes to collect data from a specific user, a message is sent to him and his data is no longer sent.
+    \end{enumerate}
+        
+        
+    \item The system allows to third-parties to access to their request history and results.
+    
+    \item The system allows to users to check gathered data.
+
+\end{enumerate}
+
+
+\subsection{AutomatedSOS}
+
+\begin{enumerate}[label={[}R2.\arabic*{]}]
+
+    \item The system has to analyse user date and sends the location of the user to the ambulance service in case of emergency, when health values goes under the threshold.
+    
+    \item The system gives the possibility to subscribe to the service upon request, only after checking the user age.
+\end{enumerate}
+
+
+\subsection{Track4Run }
+
+\begin{enumerate}[label={[}R3.\arabic*{]}]
+
+    \item The system allows participants to enrol just with their Data4Help account.
+    
+    \item The system allows the enrolling of runner only if they are not enrolled in a race at the same time.
+    
+    \item The system allows spectators to access the application as host-users, without registration, by giving them only the possibility to track the runners.
+    
+    \item The system store the ranks of old races so that both participants and organisers can access to the race history.
+    
+    \item The system should allow the registration of organisers without requiring also Data4Help registration,
+    
+    \item In order to organise a run, the application requires track, data, time and the maximum number of participants.
+    
+    \item The system need to update subscription to the runs, decreasing the number of allowed participants. It should not allow subscription if there are not leftovers places.
+    
+    \item The system shouldn't allow that two or more runs are organised neither at the same place and at the same time.
+
+\end{enumerate}
