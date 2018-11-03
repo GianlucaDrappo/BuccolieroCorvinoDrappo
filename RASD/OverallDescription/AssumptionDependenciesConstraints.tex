@@ -6,8 +6,6 @@
         
         \subsubsection{Data4Help}
         \begin{enumerate}[label={[}D1.\arabic*{]}]
-            \item Data sampling is frequent enough. %maybe discuss this
-            
             \item Acquired data is precise enough.
             
             \item Each Individual can be identified unambiguously through his/her fiscal code.
@@ -27,7 +25,7 @@
             \begin{enumerate}[label={[}D2.\arabic*{]}]
                 \item An ambulance service capable of handling requests exists.
                 
-                \item The threshold below which a person is considered to be in need of help is under XXX bpm. %define the threshold!
+                \item The thresholds beyond which a person is considered to be in need of help are under 40 bpm and above 130 bpm.
                 \item Elderly people are over 65 years old.
                 
                 \item The service is offered in Italy (118 is the emergency number for the ambulance service).
@@ -42,8 +40,8 @@
                 
     \subsection{Dependencies}
         It has to be noted that both \emph{AutomatedSOS} and \emph{Track4Run} need \emph{Data4Help} in order to work. In particular, from the point of view of the two applications, these assumptions have to hold:
-        \begin{enumerate}[label={[}D2-3.\arabic*{]}]
-            \item Customer has to be registered to \emph{Data4Help}.
+        \begin{enumerate}[label={[}D2-3.\arabic*{]}, leftmargin=*]
+            \item Customers (only Participants for \emph{Track4Run}) have to be registered to \emph{Data4Help}.
             
             \item User data is gathered through \emph{Data4Help}.
             
