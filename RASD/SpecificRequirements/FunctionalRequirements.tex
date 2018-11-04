@@ -16,14 +16,14 @@
                     \hline
                     \textbf{Goals} & \\ 
                      \hline
-                    \textbf{Entry Condition} & The user who want to register must have a smart-watch or fitness-band\\
+                    \textbf{Entry Condition} & The user who wants to register must have a smart-watch or fitness-band\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The visitor accesses the application log in page.
-                                                \item The visitor fills all the mandatory information (name, surname, fiscal code, password and email) in order to create an Individual account.
+                                                \item The Visitor accesses the application log in page.
+                                                \item The Visitor clicks on the ``\emph{Register}" button and then fills in all the mandatory information (name, surname, fiscal code, password and email) in order to create an Individual account.
                                                 \item The D4H System registers the user and sends back a confirmation email.
-                                                \item The user has to associate his smart-watch or fitness-band to the account.
-                                                \item The visitor becomes an Individual, inserting its email and password in the log in page.
+                                                \item The Visitor has to associate his smart-watch or fitness-band to the account.
+                                                \item The Visitor becomes an Individual, inserting its email and password in the log in page.
                                             \end{enumerate}\\
                      \hline
                     \textbf{Exit Condition} & Now the user has his personal account.\\
@@ -33,7 +33,7 @@
                 \end{tabular}  
             \end{table}
         
-        \subsubsection{Third-party registration/log in}
+        \subsubsection{Third-party registration and log in}
             In order to have access to the functionalities of the application, Visitors have to register to the service as Third-parties. After that, they will be able to log into the application using their email and password and to perform their researches.
             
             \begin{table}[H]
@@ -51,14 +51,14 @@
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
                         \item The Visitor accesses the registration page.
-                        \item The Visitor fills in all the necessary information useful to be recognised as Third-party (company name, VAT code, email and password).
+                        \item The Visitor clicks on the ``\emph{Register}" button and then fills in all the necessary information useful to be recognised as Third-party (company name, VAT code, email and password).
                         \item \emph{Data4Help} creates a new account and sends a confirmation email to the just registered Third-party.
                         \item The newly registered Third-party can now log into the application using the email and password previously provided, so to have access to the available features.
                     \end{enumerate} \\
                      \hline
                     \textbf{Exit Condition} & The Third-party is registered and able to log into \emph{Data4Help}. \\
                      \hline
-                    \textbf{Exception} & The Visitor is not able to registered because the email is                      already in use. \newline
+                    \textbf{Exception} & The Visitor is not able to register because the email is                        already in use. \newline
                                          A registered Third-Party is not able to log in because the email or password inserted are wrong or the email has not been confirmed. \newline
                                          These exceptions will be handled by the system sending an error message. \\
                      \hline
@@ -191,7 +191,7 @@
                      \hline
                     \textbf{Exit Condition} & The individual has personal data storage in his D4H account.\\
                      \hline
-                    \textbf{Exception} & If the associate device (smart-watch or fitness-bend) doesn't work or does not send data anymore an exception will be handled by the system ... come?\\
+                    \textbf{Exception} & If the associate device (smart-watch or fitness-band) does not work or does not send data anymore the exception will be handled by the system by sending an error message. \\
                      \hline
                 \end{tabular}  
             \end{table} 
@@ -216,22 +216,85 @@
                     \textbf{Entry Condition} & The user has a D4H account. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                               \item The user logs into his D4H personal account.
+                                               \item The Individual logs into his D4H personal account.
                                                \item The Individual presses on
                                                ``\emph{AutomatedSOS service}", in order to make a new subscription request.
                                                \item The ASOS System checks if the petitioner is at least 65 years old.
-                                               \item If verified, the user is now subscribed.
+                                               \item If verified, the user gets subscribed.
                                            \end{enumerate}\\
                      \hline
                     \textbf{Exit Condition} & The Individual is now subscribed to Automated SOS service.\\
                      \hline
-                    \textbf{Exception} & If the petitioner is less then 65 years old, the system handle the exception, sending him an error message. \\
+                    \textbf{Exception} & If the petitioner is less then 65 years old, the system handles the exception, sending him an error message. \\
                      \hline
                 \end{tabular}  
             \end{table} 
             
+            \subsubsection{Ambulance dispatching}
+                Whenever the system receives a value that goes beyond the critical threshold, ASOS contacts the ambulance service, asking for assistance.
+                
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} & \begin{itemize}
+                        \item Elderly person
+                        \item Ambulance service
+                    \end{itemize} \\
+                     \hline
+                    \textbf{Goals} & \\ 
+                     \hline
+                    \textbf{Entry Condition} & The user has an ASOS account and is logged in. \\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                               \item D4H collects through the connected device a critical bpm value relative to the Elderly person.
+                                               \item ASOS checks if the value is under the critical threshold.
+                                               \item ASOS contacts the ambulance service, giving the location of the Elderly person gathered with the last measurement.
+                                               \item The ambulance service sends an ambulance to the Elderly person location.
+                                           \end{enumerate} \\
+                     \hline
+                    \textbf{Exit Condition} & The ambulance service has been warned and an ambulance in arriving at the Elderly person place. \\
+                     \hline
+                    \textbf{Exception} & There are no exceptions. \\
+                     \hline
+                \end{tabular}  
+            \end{table}                 
             
     \subsection{Track4Run}
+        
+        \subsubsection{Organiser registration and log in}
+            Any Organiser need to register to T4R before being able to organise and publish races. This account is in no way dependant to D4H and Organisers do not need to be registered to D4H too. Therefore, if they are already registered to D4H as Third-parties, they still need a new account, but can use the same information provided for D4H. 
+            
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} & \begin{itemize}
+                        \item Visitor
+                        \item Organiser
+                    \end{itemize} \\
+                     \hline
+                    \textbf{Goals} & \\ 
+                     \hline
+                    \textbf{Entry Condition} & There is no entry condition. \\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                               \item The Visitor accesses the application log in page.
+                                               \item The Visitor clicks on the ``\emph{Register}" button and then fills in all the mandatory information (company name, VAT code, email and password).
+                                               \item T4R creates a new account and sends a confirmation email to the just registered Organiser.
+                                               \item The newly registered Organiser can now log into the application using the email and password previously provided, so to have access to the available features.
+                                           \end{enumerate} \\
+                     \hline
+                    \textbf{Exit Condition} & The Organiser is registered and able to log into                                \emph{Track4Run}. \\
+                     \hline
+                    \textbf{Exception} & The Visitor is not able to register because the email is                                             already in use. \newline
+                                         A registered Organiser is not able to log in because the email or password inserted are wrong or the email has not been confirmed. \newline
+                                         These exception will be handled by the system sending an error message. \\
+                                         \hline
+                \end{tabular}  
+            \end{table}            
             
         \subsubsection{Run organisation}
             
@@ -251,19 +314,49 @@
                     \textbf{Entry Condition} & Organiser must have an organiser account in T4R system.\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The organiser logs into his/her personal account.
-                                                \item He presses on ``\emph{New Run}" button.
-                                                \item The organiser specifies date, time, place and the maximum number of participants.
-                                                \item The system creates this new run, stores it and sends a notification email to the organiser.
+                                                \item The Organiser logs into his/her personal account.
+                                                \item The Organiser presses on ``\emph{New Run}" button.
+                                                \item The Organiser specifies date, time, place and the maximum number of participants.
+                                                \item The system creates this new run, stores it and sends a notification email to the Organiser.
                                             \end{enumerate}\\
                      \hline
                     \textbf{Exit Condition} & A new race has been created.\\
                      \hline
-                    \textbf{Exception} & If there is another stored race with the same data, time and place, the system handles the exception, showing an error message to the organiser. \\
+                    \textbf{Exception} & If there is another stored race with the same data, time and place, the system                       handles the exception, showing an error message to the organiser. \\
                      \hline
                 \end{tabular}  
             \end{table} 
             
+            
+        \subsubsection{Enrolment to a run}
+            Any Participant can log into T4H using his D4H (Individual) account. After doing that, he/she will be able to see all available runs and to enrol to them. The races can be filtered by time and zone, as to simplify the research.
+            
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} & \begin{itemize}
+                        \item Participant
+                    \end{itemize} \\
+                     \hline
+                    \textbf{Goals} & \\ 
+                     \hline
+                    \textbf{Entry Condition} & The Participant is logged into D4H using his Individual account. \\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item The Participant looks through the available races, eventually filtering them to ease the search, and selects one of them.
+                                                \item The Participant presses on ``\emph{Enrol}" button.
+                                                \item T4R sends a confirmation mail to the Participant.
+                                            \end{enumerate}\\
+                     \hline
+                    \textbf{Exit Condition} & The Participant is enrolled to the selected race.\\
+                     \hline
+                    \textbf{Exception} & If the Participant is already enrolled to another race at the same time, an                          error message is sent to him/her. \newline
+                                         If the race has reached the maximum number of subscriptions, an error message is sent to the Participant. \\
+                     \hline
+                \end{tabular}  
+            \end{table}            
             
         \subsubsection{Participant tracking}
             
@@ -277,26 +370,56 @@
                     \textbf{Actors} & \begin{itemize}
                                             \item Visitor
                                             \item Map service
-                                        \end{itemize}\\
+                                        \end{itemize} \\
                      \hline
                     \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & There is no entry condition \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The visitor launches the application.
+                                                \item The Visitor launches the application.
                                                 \item They press on the ``\emph{Track runners}" button.
                                                 \item The system shows the list of current runs.
-                                                \item The visitor selects the run of interest.
+                                                \item The Visitor selects the run of interest.
                                                 \item The system asks for map and runners positions to the map service.
                                                 \item The map service sends to the system map and runners location.
                                                 \item The system shows the map with all runners current position.
-                                            \end{enumerate}\\
+                                                \item If the Visitor follows the run until the end, T4R shows to him the rank.
+                                            \end{enumerate} \\
                      \hline
-                    \textbf{Exit Condition} & Visitors are now able to see runners on a map.\\
+                    \textbf{Exit Condition} & Visitors are now able to see runners on a map (and the rank if the stay until the race is over). \\
                      \hline
-                    \textbf{Exception} & If there are no runs in that moment, the system handles the exception, showing a notification message.\\
+                    \textbf{Exception} & If there are no runs in that moment, the system handles the exception, showing a notification message. \\
                      \hline
                 \end{tabular}  
-            \end{table} 
-        
+            \end{table}
+            
+            \subsubsection{Rank history}
+                Participants and Organisers are able to see the rank for all past races they have took part in or organises, respectively. Since the procedure to access the rank history is the same for the two actors, only one use case is provided.
+
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} & \begin{itemize}
+                                            \item Participant / Organiser
+                                        \end{itemize} \\
+                     \hline
+                    \textbf{Goals} & \\ 
+                     \hline
+                    \textbf{Entry Condition} & The Participant has took part in / The Organiser has organised at least                              one run and is logged in. \\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item The Participant / Organiser clicks on the ``\emph{Runs history}" tab.
+                                                \item The Participant / Organiser selects the run of which he/she wishes to see the rank.
+                                                \item T4R shows the rank to the Participant / Organiser.
+                                            \end{enumerate} \\
+                     \hline
+                    \textbf{Exit Condition} & The Participant / Organiser is able to see the rank of the selected race                             he/she has took part in / organised. \\
+                     \hline
+                    \textbf{Exception} & If the Participant has not took part in any run, an error message is sent to                         him/her. \newline
+                                         If the Organiser has not organised any run, an error message is sent to him/her. \\
+                     \hline
+                \end{tabular}  
+            \end{table}        
