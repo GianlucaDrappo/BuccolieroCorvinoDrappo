@@ -28,10 +28,17 @@
                      \hline
                     \textbf{Exit Condition} & Now the user has his personal account.\\
                      \hline
-                    \textbf{Exception} & The Registered user is not able to sign in the System because the ID (fiscal code for individual) or password are wrong or if he did not confirmed his email. In this situations, the system will show the user an error message.\\
+                    \textbf{Exception} & The Registered user is not able to sign in the System because the ID (fiscal code for individual) or password are wrong or if he did not confirmed his email. In these situations, the system will show the user an error message.\\
                      \hline
                 \end{tabular}  
             \end{table}
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.70]{pictures/IndividualRegistrationSequenceDiagram.png}}
+                \caption{Sequence diagram representing the registration/log in phase of an Individual.}
+                \label{fig:seq-diagram1}
+            \end{figure}
         
         \subsubsection{Third-party registration and log in}
             In order to have access to the functionalities of the application, Visitors have to register to the service as Third-parties. After that, they will be able to log into the application using their email and password and to perform their researches.
@@ -58,7 +65,7 @@
                      \hline
                     \textbf{Exit Condition} & The Third-party is registered and able to log into \emph{Data4Help}. \\
                      \hline
-                    \textbf{Exception} & The Visitor is not able to register because the email is                        already in use. \newline
+                    \textbf{Exception} & The Visitor is not able to register because the email or the VAT code                      are already in use. \newline
                                          A registered Third-Party is not able to log in because the email or password inserted are wrong or the email has not been confirmed. \newline
                                          These exceptions will be handled by the system sending an error message. \\
                      \hline
@@ -67,14 +74,44 @@
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.82]{pictures/RegistrationSequenceDiagram.png}}
-                \caption{Sequence diagram representing the registration/log in phase of a Third-party}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.73]{pictures/RegistrationSequenceDiagram.png}}
+                \caption{Sequence diagram representing the registration/log in phase of a Third-party.}
                 \label{fig:seq-diagram2}
             \end{figure}
             
             
         \subsubsection{Single user data request and subscription}
         %gian    
+            Third-parties can perform a request to Data4Help for a specific users by specifying his/her fiscal code. Data4Help forwards it to the User that can accept or refuse it. Then, in case of positive answer, Data4Help sends the user's health data to the applicant. If it is not, it sends a notification to the third-party informing it about the refuse.
+
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} &  \begin{itemize}
+                                            \item Third-party
+                                            \item Individual
+                                        \end{itemize}\\
+                     \hline
+                    \textbf{Goals} & \ref{goal1 : individual monitoring}\\ 
+                     \hline
+                    \textbf{Entry Condition} & Third-party has to be registered to Data4Help.\\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item The Third-Party selects "search by Fiscal Code" and it inserts the Fiscal Code of the desired person.
+                                                \item The System receives the request.
+                                                \item The System looks for the user connected to the Fiscal Code requested and forwards him/her the request.
+                                                \item The User receives the request with the name of who is requesting his/her data.
+                                                 \item The User can accept or refuse the request. By accepting it, he/she allows the System to send all his/her health data to the applicant.
+                                            \end{enumerate}\\
+                     \hline
+                    \textbf{Exit Condition} & The Third-party has the user's health data and receive updates of them periodically. \\
+                     \hline
+                    \textbf{Exception} & The Fiscal Code requested doesn't match with any registered user. In this case, the system notifies it with a pop-up in the third-party application. In addition, the user may refuse the request. Then the System send a message to the Third-party notifying it about that. \\
+                     \hline
+                \end{tabular}  
+            \end{table} 
             
             
         \subsubsection{Single User data unsubscription}
@@ -90,7 +127,7 @@
                                             \item Individual
                                         \end{itemize}\\
                      \hline
-                    \textbf{Goals} & \\ 
+                    \textbf{Goals} & \ref{goal1: individual privacy}\\ 
                      \hline
                     \textbf{Entry Condition} & Third-party is logged in and has previously subscribed to the Individual's data.\\
                      \hline
@@ -107,6 +144,13 @@
                 \end{tabular}  
             \end{table} 
             
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/IndividualRequestUnsubscriptionSequenceDiagram.png}}
+                \caption{Sequence diagram representing the Unsubscription process for an individual data subscription.}
+                \label{fig:Individual-request-unsubscription-process-sequence-diagram}
+            \end{figure}
+            
         \subsubsection{Aggregated user data request and subscription}
             Third-parties can perform group queries, asking for data coming from several Individuals that are within certain parameters specified by them (geographical areas, age, genre, time of the day). These requests are evaluated directly by D4H, that sends back the requested data only if the number of Individuals involved in the research is greater than 1000. If this is not the case, D4H sends an error message to the Third-party.
 
@@ -118,7 +162,7 @@
                         \item Third-party
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & \\ 
+                    \textbf{Goals} & \ref{goal1 : monitoring}, \ref{goal1 : group monitoring}\\ 
                      \hline
                     \textbf{Entry Condition} & The Third-party is logged in. \\
                      \hline
@@ -136,6 +180,13 @@
                      \hline
                 \end{tabular}  
             \end{table}
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.73]{pictures/Sequence2.png}}
+                \caption{Sequence diagram representing the group requests performed by the Third-party.}
+                \label{fig:Group-request-sequence-diagram}
+            \end{figure}
             
         \subsubsection{Aggregated user data unsubscription}
         After a successful subscription to a group search, a Third-party can cancel it at any time if it does not wish to receive any further update. He will, however, still have access to the data collected until that point.
@@ -165,6 +216,12 @@
                 \end{tabular}  
             \end{table}        
         
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.73]{pictures/Sequence3.png}}
+                \caption{Sequence diagram representing the unsubscription from a group search by a Third-party.}
+                \label{fig:Group-request-unsubscription-process-sequence-diagram}
+            \end{figure}
         
         \subsubsection{Data Collection}
             
@@ -196,6 +253,13 @@
                 \end{tabular}  
             \end{table} 
             
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/DataStorageActivityDiagram.png}}
+                \caption{Activity diagram representing data storage process.}
+                \label{fig:Data-storage-activity-diagram}
+            \end{figure}
+            
     \subsection{Automated SOS}
             
         \subsubsection{Subscription Request}
@@ -216,7 +280,6 @@
                     \textbf{Entry Condition} & The user has a D4H account. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                               \item The Individual logs into his D4H personal account.
                                                \item The Individual presses on
                                                ``\emph{AutomatedSOS service}", in order to make a new subscription request.
                                                \item The ASOS System checks if the petitioner is at least 65 years old.
@@ -230,7 +293,14 @@
                 \end{tabular}  
             \end{table} 
             
-            \subsubsection{Ambulance dispatching}
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.70]{pictures/ASOSubscriptionRequest.png}}
+                \caption{Sequence diagram representing the subscription request for ASOS service.}
+                \label{fig:ASOS-seq-diagram1}
+            \end{figure}
+            
+        \subsubsection{Ambulance dispatching}
                 Whenever the system receives a value that goes beyond the critical threshold, ASOS contacts the ambulance service, asking for assistance.
                 
             \begin{table}[H]
@@ -248,9 +318,9 @@
                     \textbf{Entry Condition} & The user has an ASOS account and is logged in. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                               \item D4H collects through the connected device a critical bpm value relative to the Elderly person.
-                                               \item ASOS checks if the value is under the critical threshold.
-                                               \item ASOS contacts the ambulance service, giving the location of the Elderly person gathered with the last measurement.
+                                               \item D4H collects through the connected device the Elderly person's data.
+                                               \item ASOS checks if the values are under the critical threshold.
+                                               \item If so, ASOS contacts the ambulance service, giving the location of the Elderly person gathered with the last measurement. Otherwise, it does nothing.
                                                \item The ambulance service sends an ambulance to the Elderly person location.
                                            \end{enumerate} \\
                      \hline
@@ -261,10 +331,17 @@
                 \end{tabular}  
             \end{table}                 
             
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.6150]{pictures/Activity1.png}}
+                \caption{Activity diagram representing the call for an ambulance that ASOS performs when a critical measurement is collected by D4H.}
+                \label{fig:ASOS-activity-diagram1}
+            \end{figure}
+            
     \subsection{Track4Run}
         
         \subsubsection{Organiser registration and log in}
-            Any Organiser need to register to T4R before being able to organise and publish races. This account is in no way dependant to D4H and Organisers do not need to be registered to D4H too. Therefore, if they are already registered to D4H as Third-parties, they still need a new account, but can use the same information provided for D4H. 
+            Any Organiser needs to register to T4R before being able to organise and publish races. This account is in no way dependant to D4H and Organisers do not need to be registered to D4H too. Therefore, if they are already registered to D4H as Third-parties, they still need a new account, but can use the same information provided for D4H. 
             
             \begin{table}[H]
             	\centering
@@ -289,12 +366,19 @@
                      \hline
                     \textbf{Exit Condition} & The Organiser is registered and able to log into                                \emph{Track4Run}. \\
                      \hline
-                    \textbf{Exception} & The Visitor is not able to register because the email is                                             already in use. \newline
+                    \textbf{Exception} & The Visitor is not able to register because the email or the VAT code                      are already in use. \newline
                                          A registered Organiser is not able to log in because the email or password inserted are wrong or the email has not been confirmed. \newline
                                          These exception will be handled by the system sending an error message. \\
                                          \hline
                 \end{tabular}  
-            \end{table}            
+            \end{table}
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.73]{pictures/Sequence4.png}}
+                \caption{Sequence diagram representing the registration of an Organiser to T4R.}
+                \label{fig:Organiser-registration-sequence-diagram}
+            \end{figure}
             
         \subsubsection{Run organisation}
             
@@ -314,7 +398,6 @@
                     \textbf{Entry Condition} & Organiser must have an organiser account in T4R system.\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The Organiser logs into his/her personal account.
                                                 \item The Organiser presses on ``\emph{New Run}" button.
                                                 \item The Organiser specifies date, time, place and the maximum number of participants.
                                                 \item The system creates this new run, stores it and sends a notification email to the Organiser.
@@ -327,6 +410,12 @@
                 \end{tabular}  
             \end{table} 
             
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/OrganizationRunSequenceDiagram.png}}
+                \caption{Sequence diagram representing the request in order to create a new run.}
+                \label{fig:T4R-run-organization}
+            \end{figure}
             
         \subsubsection{Enrolment to a run}
             Any Participant can log into T4H using his D4H (Individual) account. After doing that, he/she will be able to see all available runs and to enrol to them. The races can be filtered by time and zone, as to simplify the research.
@@ -342,9 +431,10 @@
                      \hline
                     \textbf{Goals} & \\ 
                      \hline
-                    \textbf{Entry Condition} & The Participant is logged into D4H using his Individual account. \\
+                    \textbf{Entry Condition} & The Participant is logged into T4R, using his D4H Individual account. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
+                                                \item The participant clicks on the ``\emph{Show available races}" button.
                                                 \item The Participant looks through the available races, eventually filtering them to ease the search, and selects one of them.
                                                 \item The Participant presses on ``\emph{Enrol}" button.
                                                 \item T4R sends a confirmation mail to the Participant.
@@ -357,6 +447,13 @@
                      \hline
                 \end{tabular}  
             \end{table}            
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.97]{pictures/modelT4R_ParticipantEnrollment.png}}
+                \caption{Sequence diagram representing the enrolment to a run of a Participant.}
+                \label{fig:T4R-participant-enrolment}
+            \end{figure}
             
         \subsubsection{Participant tracking}
             
@@ -394,8 +491,15 @@
                 \end{tabular}  
             \end{table}
             
-            \subsubsection{Rank history}
-                Participants and Organisers are able to see the rank for all past races they have took part in or organises, respectively. Since the procedure to access the rank history is the same for the two actors, only one use case is provided.
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.70]{pictures/TrackingSequenceDiagram.png}}
+                \caption{Sequence diagram representing the request in order to see participant position on a map during the run.}
+                \label{fig:T4R-runner-tracking}
+            \end{figure}
+            
+        \subsubsection{Rank history}
+            Participants and Organisers are able to see the rank for all past races they have took part in or organised, respectively. Since the procedure to access the rank history is the same for the two actors, only one use case is provided.
 
             \begin{table}[H]
             	\centering
@@ -418,8 +522,15 @@
                      \hline
                     \textbf{Exit Condition} & The Participant / Organiser is able to see the rank of the selected race                             he/she has took part in / organised. \\
                      \hline
-                    \textbf{Exception} & If the Participant has not took part in any run, an error message is sent to                         him/her. \newline
+                    \textbf{Exception} & If the Participant has not took part in any run, an error                       message is sent to him/her. \newline
                                          If the Organiser has not organised any run, an error message is sent to him/her. \\
                      \hline
                 \end{tabular}  
-            \end{table}        
+            \end{table}
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.97]{pictures/modelT4R_RankHistory.png}}
+                \caption{Sequence diagram representing request for the rank of a run.}
+                \label{fig:T4R-rank-history}
+            \end{figure}

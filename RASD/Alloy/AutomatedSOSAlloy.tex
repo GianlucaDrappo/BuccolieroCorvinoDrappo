@@ -1,1 +1,21 @@
 \section{AutomatedSOS Alloy analysis}
+
+    AutomatedSOS is a service on top of Data4Help that allows the monitoring of the elderly users, and provides them an ambulance in case of sudden illness. Thus, it is very important that the service sends a request to the ambulance provider when the user's hearth frequency exceed a threshold. The following model has been built in order to guarantee this very critical constrain.
+    
+    \subsection{Signatures}
+        
+        Here we present all the signature composing the model.
+        
+        \lstinputlisting[language=alloy]{./Alloy/AlloyCode/ASOS_signatures.als}
+    
+    \subsection{Facts}
+ 
+        In this section are defined all the constraints needed in order to create a consistent model of the ambulance requests.
+    
+        \lstinputlisting[language=alloy]{./Alloy/AlloyCode/ASOS_facts.als}
+
+    \subsection{Asserts}
+    
+        At the end this two asserts verify if the model built respects all the constraints to guarantee the requirements before explained.
+    
+        \lstinputlisting[language=alloy]{./Alloy/AlloyCode/ASOS_asserts&pred.als}

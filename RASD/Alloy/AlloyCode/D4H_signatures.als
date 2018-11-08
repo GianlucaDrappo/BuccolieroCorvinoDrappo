@@ -4,6 +4,9 @@ open util/boolean
     	fiscalCode: one FiscalCode,
     	uData: one UserData,
     	hData: some HealthData
+    }{
+    	no disj hd1, hd2: HealthData |
+    		hd1.acquisition = hd2.acquisition
     }
     
     sig FiscalCode{}
