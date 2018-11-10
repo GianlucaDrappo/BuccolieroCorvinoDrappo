@@ -1,7 +1,23 @@
 \section{Functional Requirements}
+    This section is split into 3 parts, one for each application. In each of them there is a scenario describing a realistic situation that may occur in the world and how the actors interact with the software. Every scenario is then generalised in an use case diagram, several use cases,  sequence and activity diagrams from the UML framework.
     \subsection{Data4Help}
-        \subsubsection{Individual registration/log in}
-            Every user who wants to use \emph{D4H} should be registered to the application System. After registration the user has to sign in, in order to collect data.\\
+        Consider the following scenario:
+        
+        RestAssured is an insurance company that wants to offer a personalised service to his customers. In order to do so, it registers to \emph{Data4Help} as a Third-party through the Android application, providing the needed data. Luigi is a new customer of RestAssured. The company has a special offer dedicated to the clients that accept to be tracked through \emph{Data4Help}, so he downloads the application on his device and registers to the service as an Individual, also associating his smart-watch. RestAssured then looks for him in the application inserting his fiscal code and sends him a request for the access to his data, including a subscription request, with updates wanted every week. Luigi accepts the request, so \emph{Data4Help} starts sending his data to RestAssured.
+        
+        After a couple of months, however, Luigi no longer wishes to benefit from RestAssured's special offer, because he is concerned about his privacy and finds out through \emph{Data4Help} that he is giving a lot of data to RestAssured. Therefore, he accesses the subscription page on \emph{Data4Help} and cancels the company's subscription. RestAssured receives the email that notifies Luigi's refusal of further provision of data and cancels his offer.
+        
+        Having a large client base, RestAssured decides to perform a statistical study on the health status of his customers. The company wants to start from Milan, so it performs an aggregated research on \emph{Data4Help}, setting the location to Milan and the time frame to the last month. Since the research produced more than 1000 results, \emph{Data4Help} sends the result back to the company, making the data anonymous.
+        
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/D4H_UseCaseDiagram.png}}
+                \caption{Use case diagram relative to \emph{Data4Help}.}
+                \label{fig:D4H-Use-case-diagram}
+            \end{figure}
+        
+        \subsubsection{Individual registration and log in}
+            Every user who wants to use \emph{D4H} should be registered to the application System. After registration the user has to sign in, in order to collect data. \\
 
             \begin{table}[H]
             
@@ -12,9 +28,7 @@
                     \textbf{Actors} & \begin{itemize}
                                           \item Visitor
                                           \item Individual
-                                      \end{itemize}\\
-                    \hline
-                    \textbf{Goals} & \\ 
+                                      \end{itemize} \\
                      \hline
                     \textbf{Entry Condition} & The user who wants to register must have a smart-watch or fitness-band\\
                      \hline
@@ -52,8 +66,6 @@
                         \item Third-party
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & G1.1, G1.2, G1.3, G1.4 \\ 
-                     \hline
                     \textbf{Entry Condition} & There is no entry condition. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
@@ -81,7 +93,7 @@
             
             
         \subsubsection{Single user data request and subscription}
-        %gian    
+  
             Third-parties can perform a request to Data4Help for a specific users by specifying his/her fiscal code. Data4Help forwards it to the User that can accept or refuse it. Then, in case of positive answer, Data4Help sends the user's health data to the applicant. If it is not, it sends a notification to the third-party informing it about the refuse.
 
             \begin{table}[H]
@@ -94,62 +106,32 @@
                                             \item Individual
                                         \end{itemize}\\
                      \hline
-                    \textbf{Goals} & \ref{goal1 : individual monitoring}\\ 
-                     \hline
                     \textbf{Entry Condition} & Third-party has to be registered to Data4Help.\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The Third-Party selects "search by Fiscal Code" and it inserts the Fiscal Code of the desired person.
+                                                \item The Third-Party selects ``\emph{Search by Fiscal Code}" and it inserts the Fiscal Code of the desired person.
                                                 \item The System receives the request.
                                                 \item The System looks for the user connected to the Fiscal Code requested and forwards him/her the request.
                                                 \item The User receives the request with the name of who is requesting his/her data.
                                                  \item The User can accept or refuse the request. By accepting it, he/she allows the System to send all his/her health data to the applicant.
+                                                 \item The system send notification to the third-party.
                                             \end{enumerate}\\
                      \hline
                     \textbf{Exit Condition} & The Third-party has the user's health data and receive updates of them periodically. \\
                      \hline
-                    \textbf{Exception} & The Fiscal Code requested doesn't match with any registered user. In this case, the system notifies it with a pop-up in the third-party application. In addition, the user may refuse the request. Then the System send a message to the Third-party notifying it about that. \\
-                     \hline
-                \end{tabular}  
-            \end{table} 
-            
-            
-        \subsubsection{Single User data unsubscription}
-            After a successful subscription request, both Third-party or Individual can make a request in order to break the subscription to the specified data.
-
-            \begin{table}[H]
-            	\centering
-                
-                \begin{tabular}{|p{3cm}|p{8.2cm}|}
-                    \hline
-                    \textbf{Actors} &  \begin{itemize}
-                                            \item Third-party
-                                            \item Individual
-                                        \end{itemize}\\
-                     \hline
-                    \textbf{Goals} & \ref{goal1: individual privacy}\\ 
-                     \hline
-                    \textbf{Entry Condition} & Third-party is logged in and has previously subscribed to the Individual's data.\\
-                     \hline
-                    \textbf{Events Flow} & \begin{enumerate}
-                                                \item The Third-Party or Individual access to the subscription page and select the subscription to be cancelled.
-                                                \item The Third-party or the Individual presses ``\emph{Unsubscribe}" button.
-                                                \item The system deletes the Third-party subscription and sends an email to both Third-party and Individual.
-                                            \end{enumerate}\\
-                     \hline
-                    \textbf{Exit Condition} & The Third-party is not subscribed anymore, but it has access to the previously received data. \\
-                     \hline
-                    \textbf{Exception} & There are no exceptions. \\
+                    \textbf{Exception} & The Fiscal Code requested doesn't match with any registered user. In this case, the system notifies it with a pop-up in the third-party application.\\
                      \hline
                 \end{tabular}  
             \end{table} 
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/IndividualRequestUnsubscriptionSequenceDiagram.png}}
-                \caption{Sequence diagram representing the Unsubscription process for an individual data subscription.}
-                \label{fig:Individual-request-unsubscription-process-sequence-diagram}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.73]{pictures/IndividualRequestSequenceDiagram.png}}
+                \caption{Sequence diagram representing the third-party Individual request.}
+                \label{fig:IndividualRequest}
             \end{figure}
+            
+        
             
         \subsubsection{Aggregated user data request and subscription}
             Third-parties can perform group queries, asking for data coming from several Individuals that are within certain parameters specified by them (geographical areas, age, genre, time of the day). These requests are evaluated directly by D4H, that sends back the requested data only if the number of Individuals involved in the research is greater than 1000. If this is not the case, D4H sends an error message to the Third-party.
@@ -161,8 +143,6 @@
                     \textbf{Actors} &  \begin{itemize}
                         \item Third-party
                     \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \ref{goal1 : monitoring}, \ref{goal1 : group monitoring}\\ 
                      \hline
                     \textbf{Entry Condition} & The Third-party is logged in. \\
                      \hline
@@ -188,6 +168,66 @@
                 \label{fig:Group-request-sequence-diagram}
             \end{figure}
             
+        \subsubsection{Collected data during Subscription}    
+            After a successful subscription request, the system sends updates to the Third-party aggregating the data with the specified granularity and frequency.
+        
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} &  \begin{itemize}
+                                            \item Third-party
+                                        \end{itemize}\\
+                     \hline
+                    \textbf{Entry Condition} & Third-party is logged in and has previously subscribed to the Individual's data.\\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item 
+                                           The system sends updates to the Third-party aggregating the data with the specified granularity and frequency. \end{enumerate}\\
+                     \hline
+                    \textbf{Exit Condition} & Third-party receives updated data with specified granularity and frequency. \\
+                     \hline
+                    \textbf{Exception} & The system go out from loop when \emph{Single User data unsubscription} or \emph{Aggregated user data unsubscription} start, according to what kind of data the third-party is subscribed. \\
+                     \hline
+                \end{tabular}  
+            \end{table} 
+            
+        \subsubsection{Single User data unsubscription}
+            After a successful subscription request, both Third-party or Individual can make a request in order to break the subscription to the specified data.
+
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} &  \begin{itemize}
+                                            \item Third-party
+                                            \item Individual
+                                        \end{itemize}\\
+                     \hline
+                    \textbf{Entry Condition} & Third-party is logged in and has previously subscribed to the Individual's data.\\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item The Third-Party or Individual access to the subscription page and select the subscription to be cancelled.
+                                                \item The Third-party or the Individual presses ``\emph{Unsubscribe}" button.
+                                                \item The system deletes the Third-party subscription and sends an email to both Third-party and Individual.
+                                            \end{enumerate}\\
+                     \hline
+                    \textbf{Exit Condition} & The Third-party is not subscribed anymore, but it has access to the previously received data. \\
+                     \hline
+                    \textbf{Exception} & There are no exceptions. \\
+                     \hline
+                \end{tabular}  
+            \end{table} 
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/IndividualRequestUnsubscriptionSequenceDiagram.png}}
+                \caption{Sequence diagram representing the Unsubscription process for an individual data subscription.}
+                \label{fig:Individual-request-unsubscription-process-sequence-diagram}
+            \end{figure}    
+            
         \subsubsection{Aggregated user data unsubscription}
         After a successful subscription to a group search, a Third-party can cancel it at any time if it does not wish to receive any further update. He will, however, still have access to the data collected until that point.
         
@@ -198,8 +238,6 @@
                     \textbf{Actors} &  \begin{itemize}
                         \item Third-party
                     \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & The Third-party is logged in and has previously subscribed to a group search. \\
                      \hline
@@ -223,9 +261,9 @@
                 \label{fig:Group-request-unsubscription-process-sequence-diagram}
             \end{figure}
         
-        \subsubsection{Data Collection}
+        \subsubsection{Data Collection and Visualisation}
             
-            Upon registration, Individuals allows the D4H system to collect their data and store them. To gather data, it's mandatory to have a device (smart-watch or fitness-band). 
+            Upon registration, Individuals allows the D4H system to collect their data and store them. To gather data, it's mandatory to have a device (smart-watch or fitness-band).
             
             \begin{table}[H]
             	\centering
@@ -236,9 +274,7 @@
                         \item Individual
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & \\ 
-                     \hline
-                    \textbf{Entry Condition} & The user is correctly registered and logged into the D4H system.\\
+                    \textbf{Entry Condition} & The user is correctly registered and logged into the D4H system. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
                                                 \item Smart-watches or fitness-band samples specific data.
@@ -260,11 +296,58 @@
                 \label{fig:Data-storage-activity-diagram}
             \end{figure}
             
-    \subsection{Automated SOS}
+        \subsubsection{Third-parties request history}
+            Third-parties are able to see all of the requests that they have done and still have access the data of the ones that were approved at the time.
             
+            \begin{table}[H]
+            	\centering
+                
+                \begin{tabular}{|p{3cm}|p{8.2cm}|}
+                    \hline
+                    \textbf{Actors} & \begin{itemize}
+                                            \item Third-party
+                                        \end{itemize} \\
+                     \hline
+                    \textbf{Entry Condition} & The Third-party is logged in and has made at least a request. \\
+                     \hline
+                    \textbf{Events Flow} & \begin{enumerate}
+                                                \item The Third-party clicks on the ``\emph{Request history}" tab.
+                                                \item The Third-party selects the request of which it wishes to see the details.
+                                                \item D4H shows the details (and the data, if the request was approved) to the Third-party.
+                                            \end{enumerate} \\
+                     \hline
+                    \textbf{Exit Condition} & The Third-party is able to see the details of the                                  selected request it has previously made. \\
+                     \hline
+                    \textbf{Exception} & If the Third-party has not performed any request, an error                         message is sent to it. \\
+                     \hline
+                \end{tabular}  
+            \end{table}
+            
+            \begin{figure}[H]
+                \centering
+                \makebox[\textwidth][c]{\includegraphics[scale=0.84]{pictures/modelD4H_ThirdPartyRequestHistory.png}}
+                \caption{Sequence diagram representing the way a Third-party can access his request history.}
+                \label{fig:D4H-Third-party-request-history}
+            \end{figure}
+            
+            
+    \subsection{AutomatedSOS}
+        Consider the following scenario:
+        
+        Leo is a 67 years old man, already registered to \emph{Data4Help}. After the company has enabled \emph{AutomatedSOS} service, he is asked if he wants to subscribe to it for an additional price. He accepts and then \emph{TrackMe} sends him the instructions to follow in order to activate the service. Therefore, Leo opens \emph{Data4Help} and goes to the section of the application dedicated to \emph{AutomatedSOS}. After that, he clicks the button to subscribe. \emph{AutomatedSOS} evaluates and accepts the request (since Leo is 67).
+        
+        One day, Leo is taken ill suddenly and his hearth rate goes below 40 bpm. The fitness band measures this value, sends it to \emph{Data4Help} that forwards it to \emph{AutomatedSOS}. The software recognises the measurement as critical and promptly sends to the ambulance service Leo's data and location. Within 5 minutes, an ambulance arrives ad Leo's house and brings him to the hospital.
+
+        \begin{figure}[H]
+            \centering
+            \makebox[\textwidth][c]{\includegraphics[scale=0.67]{pictures/ASOS_UseCaseDiagram.png}}
+            \caption{Use case diagram relative to \emph{AutomatedSOS}. You can see the full use case diagram of D4H in the figure \ref{fig:D4H-Use-case-diagram}.}
+            \label{fig:ASOS-Use-case-diagram}
+        \end{figure}
+
         \subsubsection{Subscription Request}
             
-            Every Individual, user registered to D4H, can ask for subscription to Automated SOS service, but only Elderly people will be allowed to use it.
+            Every Individual (user registered to D4H) can ask for subscription to AutomatedSOS service, but only Elderly people will be allowed to use it.
             
             \begin{table}[H]
             	\centering
@@ -275,27 +358,25 @@
                         \item Individual
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & \\ 
-                     \hline
-                    \textbf{Entry Condition} & The user has a D4H account. \\
+                    \textbf{Entry Condition} & The user has a D4H account and is logged in. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
                                                \item The Individual presses on
-                                               ``\emph{AutomatedSOS service}", in order to make a new subscription request.
+                                               ``\emph{AutomatedSOS service}", in order to make a new subscription request, then clicks on the ``\emph{Subscribe}" button.
                                                \item The ASOS System checks if the petitioner is at least 65 years old.
                                                \item If verified, the user gets subscribed.
-                                           \end{enumerate}\\
+                                           \end{enumerate} \\
                      \hline
                     \textbf{Exit Condition} & The Individual is now subscribed to Automated SOS service.\\
                      \hline
                     \textbf{Exception} & If the petitioner is less then 65 years old, the system handles the exception, sending him an error message. \\
                      \hline
                 \end{tabular}  
-            \end{table} 
+            \end{table}
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.70]{pictures/ASOSubscriptionRequest.png}}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.68]{pictures/ASOSubscriptionRequest.png}}
                 \caption{Sequence diagram representing the subscription request for ASOS service.}
                 \label{fig:ASOS-seq-diagram1}
             \end{figure}
@@ -313,13 +394,11 @@
                         \item Ambulance service
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & \\ 
-                     \hline
                     \textbf{Entry Condition} & The user has an ASOS account and is logged in. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
                                                \item D4H collects through the connected device the Elderly person's data.
-                                               \item ASOS checks if the values are under the critical threshold.
+                                               \item ASOS checks if the values are beyond the critical threshold.
                                                \item If so, ASOS contacts the ambulance service, giving the location of the Elderly person gathered with the last measurement. Otherwise, it does nothing.
                                                \item The ambulance service sends an ambulance to the Elderly person location.
                                            \end{enumerate} \\
@@ -334,11 +413,27 @@
             \begin{figure}[H]
                 \centering
                 \makebox[\textwidth][c]{\includegraphics[scale=0.6150]{pictures/Activity1.png}}
-                \caption{Activity diagram representing the call for an ambulance that ASOS performs when a critical measurement is collected by D4H.}
+                \caption{Activity diagram representing the call for an ambulance that ASOS performs when a critical measurement is collected by D4H. See figure \ref{fig:Data-storage-activity-diagram}} to see how D4H collects user data.
                 \label{fig:ASOS-activity-diagram1}
             \end{figure}
             
     \subsection{Track4Run}
+        Consider the following scenario:
+        
+        RunTogether is a group interested in the organisation of runs in Milan. After \emph{TrackMe} has launched \emph{Track4Run}, the company decides to download \emph{Data4Help} and to register only to the \emph{Track4Run} service, not being interested in the other features of the software. It then tries to publish a run held at Parco Sempione, on 11/11/2018 at 9.30, allowing 30 participants. Since there is another run scheduled at the same place and time, \emph{Track4Run} shows an error message. RunTogether then decides to delay the competition until 12 and manages to publish it successfully. It then receives a confirmation mail with the summary of the process.
+        
+        Matteo enjoys jogging and wants to try to compete in a race. Therefore, he downloads \emph{Data4Help} application on his smart-phone and registers to the service. Then, he goes in the \emph{Track4Run} section and searches for the runs available in Milan in November. He then selects RunTogether's race, since it still has open slots, and enrols to it, pressing on the specific button. \emph{Track4Run} sends him an email as confirmation.
+        
+        The day of the race, Matteo's girlfriend, Jessica, wants to follow his route during the run. Therefore, she downloads \emph{Data4Help} application and goes in the tracking section of \emph{Track4Run}, without needing to register. She finds the run Matteo is enrolled in and selects it. \emph{Track4Run} then requests the map of the area from Google Maps and sends it back to Jessica with the location of the participants updating in real time.
+        
+        At the end of the race, Matteo wants to see the rank, so he opens \emph{Data4Help}, goes into \emph{Track4Run} section, taps on the rank history tab and finally selects the run he just attended. The system promptly shows the result to him.
+        
+        \begin{figure}[H]
+            \centering
+            \makebox[\textwidth][c]{\includegraphics[scale=0.64]{pictures/T4R_UseCaseDiagram.png}}
+            \caption{Use case diagram relative to \emph{Track4Run}. You can see the full use case diagram of D4H in the figure \ref{fig:D4H-Use-case-diagram}.}
+            \label{fig:T4R-Use-case-diagram}
+        \end{figure}        
         
         \subsubsection{Organiser registration and log in}
             Any Organiser needs to register to T4R before being able to organise and publish races. This account is in no way dependant to D4H and Organisers do not need to be registered to D4H too. Therefore, if they are already registered to D4H as Third-parties, they still need a new account, but can use the same information provided for D4H. 
@@ -352,8 +447,6 @@
                         \item Visitor
                         \item Organiser
                     \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & There is no entry condition. \\
                      \hline
@@ -393,8 +486,6 @@
                         \item Organiser
                     \end{itemize} \\
                      \hline
-                    \textbf{Goals} & \\ 
-                     \hline
                     \textbf{Entry Condition} & Organiser must have an organiser account in T4R system.\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
@@ -412,7 +503,7 @@
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.60]{pictures/OrganizationRunSequenceDiagram.png}}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.52]{pictures/OrganizationRunSequenceDiagram.png}}
                 \caption{Sequence diagram representing the request in order to create a new run.}
                 \label{fig:T4R-run-organization}
             \end{figure}
@@ -428,8 +519,6 @@
                     \textbf{Actors} & \begin{itemize}
                         \item Participant
                     \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & The Participant is logged into T4R, using his D4H Individual account. \\
                      \hline
@@ -467,9 +556,8 @@
                     \textbf{Actors} & \begin{itemize}
                                             \item Visitor
                                             \item Map service
+                                            \item Data4Help
                                         \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & There is no entry condition \\
                      \hline
@@ -478,7 +566,8 @@
                                                 \item They press on the ``\emph{Track runners}" button.
                                                 \item The system shows the list of current runs.
                                                 \item The Visitor selects the run of interest.
-                                                \item The system asks for map and runners positions to the map service.
+                                                \item The system asks for runners positions to D4H service.
+                                                \item D4H sends computed position to Map service.
                                                 \item The map service sends to the system map and runners location.
                                                 \item The system shows the map with all runners current position.
                                                 \item If the Visitor follows the run until the end, T4R shows to him the rank.
@@ -493,7 +582,7 @@
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.70]{pictures/TrackingSequenceDiagram.png}}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.65]{pictures/TrackingSequenceDiagram.png}}
                 \caption{Sequence diagram representing the request in order to see participant position on a map during the run.}
                 \label{fig:T4R-runner-tracking}
             \end{figure}
@@ -509,8 +598,6 @@
                     \textbf{Actors} & \begin{itemize}
                                             \item Participant / Organiser
                                         \end{itemize} \\
-                     \hline
-                    \textbf{Goals} & \\ 
                      \hline
                     \textbf{Entry Condition} & The Participant has took part in / The Organiser has organised at least                              one run and is logged in. \\
                      \hline
@@ -534,3 +621,107 @@
                 \caption{Sequence diagram representing request for the rank of a run.}
                 \label{fig:T4R-rank-history}
             \end{figure}
+            
+    \subsection{Traceability matrix}
+    
+    In this section, we will Keep track of relationship between goals, requirements and use cases. In order to do this, we build for each analysed services \emph{Traceability matrix}. It is important to highlight that the same use case could be linked to different requirements and the same requirement to different use cases. 
+    
+        \subsubsection{Data4Help}
+            \definecolor{light}{HTML}{FFF9C4}
+            \definecolor{dark}{HTML}{FFF59D}
+        
+         \begin{table}[H]
+            	\centering
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \rowcolor[HTML]{FDD835} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal1 : monitoring} & \ref{R1-Individual-registration} & Individual registration/log \\
+                    \hline
+                     \ref{goal1 : monitoring} & \ref{R1-third-party-registration} & Third-party registration and log in\\
+                    \hline
+                    \ref{goal1 : individual monitoring} & \ref{R1-individual-request} & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-subscription} & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1: individual privacy} & \ref{R1-individual-accept-request} & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1: individual privacy} & \ref{R1-individual-refused-request} & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription}  & \ref{R1-unsubscription} & Single User data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-Individual-unsubscription} & Single User data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-subscription}& Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-requests}& Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-req-approuved}& Aggregated user data request and subscription\\
+                    \ref{goal1 : group monitoring} & \ref{R1-group-request-refused}& Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-data-anonymized}& Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-unsubscription}& Aggregated user data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-unsubscription}& Aggregated user data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-subscription-updates} & Collected data during Subscription \\
+                     \hline
+                    \ref{goal1: individual privacy} &\ref{R1-gathered-data}  & Data Collection and Visualisation\\
+                     \hline
+                    \ref{goal1: individual privacy} &\ref{R1-individual-personal-data}  & Data Collection and Visualisation\\
+                    \hline
+                \end{tabular}  
+            \end{table}
+        
+        
+        \subsubsection{AutomatedSOS}
+            \definecolor{light}{HTML}{B3E5FC}
+            \definecolor{dark}{HTML}{81D4FA}
+        
+        \begin{table}[H]
+            	\centering
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \rowcolor[HTML]{03A9F4} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal2 : status monitorin} & \ref{R2-subscription}& Subscription Request\\
+                    \hline
+                    \ref{goal2 : ambulance}  & \ref{R2-data-and-ambulance} & Ambulance dispatching\\
+                    \hline
+                \end{tabular}  
+            \end{table}
+
+        \subsubsection{Track4Run}
+            \definecolor{light}{HTML}{DCEDC8}
+            \definecolor{dark}{HTML}{C5E1A5}
+        
+        \begin{table}[H]
+            	\centering
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                     \rowcolor[HTML]{8BC34A} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal3 : run organization} & \ref{R3-organizer-registration} & Organiser registration and log in\\
+                    \hline
+                    \ref{goal3 : run organization}  & \ref{R3-run-organization} & Run organisation\\
+                    \hline
+                    \ref{goal3 : run organization}  & \ref{R3-run-different-time} & Run organisation\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-login-enrollin} & Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-enrolling-different-time}& Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-decreasing-participant-number}& Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : tracking}  & \ref{R3-visitors} & Participant tracking\\
+                    \hline
+                     \ref{goal3 : tracking}  & \ref{R3-ranking-end} & Participant tracking\\
+                    \hline
+                      & \ref{R3-ranking-storage}& Rank history\\
+                    \hline
+                \end{tabular}  
+            \end{table}

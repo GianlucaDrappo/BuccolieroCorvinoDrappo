@@ -1,3 +1,145 @@
 \section{External Interface Requirements}
 
+In this section we are going to better explain the relation between our software and the main actors of System.
 
+\subsection{User Interfaces}
+
+\subsubsection{Data4Help interfaces}
+In the pictures below there are mockups for the D4H application.
+
+\textbf{Picture \ref{fig:D4H-login-page}} represents the screen from the login page of D4H.  The registered users (both Individuals and Third-parties) can log into their D4H account writing in their username and password. If not yet registered, the user can access the \emph{Registration pages} trough the link \emph{Sign up now}.
+
+\begin{figure}[H]
+  \centering
+  
+  \includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-login.png}
+  \caption{D4H Login page}
+  \label{fig:D4H-login-page}
+\end{figure}
+
+
+In \textbf{picture \ref{fig:D4H-registration}} there are two registration forms in order to create either an individual account (\textbf{picture \ref{fig:D4H-individual-registration}}) or a third party account (\textbf{picture \ref{fig:D4H-third-party-registration}}).
+
+
+\begin{figure}[H]
+  \centering
+  
+  \subfigure[Individual registration page]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-individual-Registration.png}\label{fig:D4H-individual-registration}}
+  \subfigure[Third-party registration page]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-third-party-Registration-Page1.png}\label{fig:D4H-third-party-registration}}
+  \caption{D4H Registration pages}
+  \label{fig:D4H-registration}
+\end{figure}
+
+In \textbf{picture \ref{fig:D4H-individual-account}} there are screens from an individual account. In the first image (\textbf{picture \ref{fig:D4H-individual-personal-data}}) the registered user can look at his gathered data, collected in a table. In the second image (\textbf{picture \ref{fig:D4H-individual-subscribed-data}}), instead, the application lets the individual to see a list of all third parties that are subscribed to his not-anonymized data and to delete the subscription at any moment.
+
+\begin{figure}[H]
+  \centering
+  
+  \subfigure[Personal data]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Individual-personal-data.png}\label{fig:D4H-individual-personal-data}}
+  \subfigure[Subscribed data]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Individual-subscribed-data.png}\label{fig:D4H-individual-subscribed-data}}
+  \caption{D4H Individual account pages}
+  \label{fig:D4H-individual-account}
+\end{figure}
+
+In \textbf{picture \ref{fig:D4H-third-party-account}} there are mockups for the third-party account. It is composed of four pages: 
+\begin{enumerate}
+    \item the first (\textbf{picture \ref{fig:D4H-third-party-gathered-data}}) lets the third-party access data of past requests; 
+    \item in the second (\textbf{picture \ref{fig:D4H-third-party-subscription}}) there is a list of all Individuals or groups to which the third-party is subscribed and it can unsubscribe simply by clicking on the ``delete" button;
+    \item the third and the fourth are the two forms to fill in order to make new data requests (and subscriptions, selecting the checkbox \emph{Subscription}). In the Group request form (\textbf{picture \ref{fig:D4H-third-party-group-request}}) the are all the possible parameters according to which the request could be done. To compute an Individual request (\textbf{picture \ref{fig:D4H-third-party-individual-request}}), instead, only the fiscal code is required.
+\end{enumerate}
+
+
+\begin{figure}[H]
+  \centering
+  
+  \subfigure[Gathered data]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Third-party-Gathered-data.png}\label{fig:D4H-third-party-gathered-data}}
+  \subfigure[Subscription]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Third-party-subscription.png}\label{fig:D4H-third-party-subscription}}
+  
+  \subfigure[Individual request]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Third-party-individual-request.png}\label{fig:D4H-third-party-individual-request}}
+  \subfigure[Group request]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-Third-party-group-request.png}\label{fig:D4H-third-party-group-request}}
+  
+  \caption{D4H Third party account pages}
+  \label{fig:D4H-third-party-account}
+\end{figure}
+
+\subsubsection{ASOS}
+
+In the pictures below there are mockups for ASOS.
+
+AutomatedSOS service provides a sign in interface (\textbf{picture \ref{fig:Asos-login}}) and, after successful log in with a D4H account, an interface to make the subscription request (\textbf{picture \ref{fig:Asos-subscription}}).
+
+\begin{figure}[H]
+  \centering
+  
+  \subfigure[Login page]{\includegraphics[width=0.30\textwidth]{pictures/mockup/ASOS-login.png}\label{fig:Asos-login}}
+  \subfigure[Subscription request]{\includegraphics[width=0.30\textwidth]{pictures/mockup/ASOS-subscription.png}\label{fig:Asos-subscription}}
+  
+  \caption{D4H Individual account pages}
+  \label{fig:ASOS-individual-account}
+  
+\end{figure}
+
+
+\subsubsection{T4R}
+In the pictures below there are mockups for T4R.
+
+The first image (\textbf{picture \ref{fig:T4R-login}}) is a possible design of the T4R sign in page. The application gives the possibility to access and register as \emph{Organizer}, to access as \emph{Runner} (clicking on the ``Access with D4H" button) or to use the application as \emph{Visitor} clicking on the ``TRACKING" button.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-login.png}
+  \caption{T4R Login page}
+  \label{fig:T4R-login}
+\end{figure}
+
+The following tree screens are a representation of how an Organizer account in T4R looks like. This Application provide a page to create a new run (\textbf{picture \ref{fig:T4R-organizer-new-run}}); a page with already created runs (\textbf{picture \ref{fig:T4R-organizer-organized-run}}) and a page to see the rankings of past races (\textbf{picture \ref{fig:T4R-organizer-ranking}}).
+
+\begin{figure}[H]
+  \centering
+  \subfigure[New Run Creation]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-New-run.png}\label{fig:T4R-organizer-new-run}}
+  \subfigure[Organised Run]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-organized-run.png}\label{fig:T4R-organizer-organized-run}}
+  \subfigure[Ranking]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-ranking.png}\label{fig:T4R-organizer-ranking}}
+  \caption{T4R Organizer account pages}
+  \label{fig:T4R-organizer-account}
+\end{figure}
+
+\textbf{Picture \ref{fig:T4R-runner-account}} below shows the design of the Runner's account page.
+The application gives the possibility to enroll to a run (\textbf{picture \ref{fig:T4R-runner-new-enroll}}), to see all runs where the runner is enrolled (\textbf{picture \ref{fig:T4R-runner-enrollment}}) and, as for the organizer account, to see the rankings of past races to which the user took part(\textbf{picture \ref{fig:T4R-runner-ranking}}).
+
+\begin{figure}[H]
+  \centering
+  \subfigure[New enrollment]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-runner-new-enrollment.png}\label{fig:T4R-runner-new-enroll}}
+  \subfigure[Enrollment]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-runner-enrollment.png}\label{fig:T4R-runner-enrollment}}
+  \subfigure[Ranking]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-runner-ranking.png}\label{fig:T4R-runner-ranking}}
+  \caption{T4R runner account pages}
+  \label{fig:T4R-runner-account}
+\end{figure}
+
+The following screens (\textbf{picture \ref{fig:T4R-visitor-pages}}) show the pages accessed by a Visitor; they can only choose between current runs (\textbf{picture \ref{fig:T4R-visitor-run-list}}) and track runners on a map (\textbf{picture \ref{fig:T4R-visitor-tracking}})
+
+\begin{figure}[H]
+  \centering
+  \subfigure[Choosing run to track ]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-tracking-selection.png}\label{fig:T4R-visitor-run-list}}
+  \subfigure[Tracking]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-Tracking.png}\label{fig:T4R-visitor-tracking}}
+  \caption{T4R visitor pages}
+  \label{fig:T4R-visitor-pages}
+\end{figure}
+
+\subsection{Hardware Interfaces}
+%
+
+
+\subsection{Software Interfaces}
+%
+ In order to provide all services, our applications need to interact with these external software:
+\begin{itemize}
+    \item \emph{Map service}
+    \item \emph{Ambulance service}
+\end{itemize}
+
+All these software will be accessed through specific APIs.
+
+\subsection{Communication Interfaces}
+%
+\emph{D4H}, \emph{ASOS} and \emph{T4R} will be developed mainly with the idea of a \emph{Android} and \emph{iOS} application. In both cases it is mandatory to have a working Internet connection, in order to receive data from external device (smart-watch or fitness band) and to send data  to the main Application Server (to compute requests, to create run, to enroll a run).
+%per gli smartwatch e le fitness bands si può mettere anche il bluetooth

@@ -3,10 +3,13 @@
 \usepackage{float}
 \usepackage[dvipsnames,table]{xcolor}
 \usepackage[<opzioni>]{frontespizio}
+\usepackage{subfigure}
 \usepackage{listing}
 \usepackage{listings}
 \usepackage{alloy-style}
 \usepackage{enumitem}
+\usepackage{url}
+\usepackage{hyperref}
 \setlist[enumerate]{label*=\arabic*.}
 
 \definecolor{color1}{HTML}{C5CAE9}
@@ -38,6 +41,9 @@
 %\part{}
 
     \input{effortSpent.tex}
-
+    
+    \nocite{*}
+    \bibliography{thebibliography}
+    \bibliographystyle{plain}
 
 \end{document}
