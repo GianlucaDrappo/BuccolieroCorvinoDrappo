@@ -22,7 +22,7 @@
     		!(t in p.time) or !(t in r.time)
     }
     
-    //All the date related to a race
+    //All the date are related to a race
     fact noDateWithoutARace{
     	no d: Date | all r: Race|
     		!(d in r.date)
@@ -81,7 +81,7 @@
     	#Race = #Organizer
     }
     
-    // A spectator can see the position of every partecipants 
+    // A spectator can see the position of every partecipant
     fact aVisitorLookToEveryPartecipant{
     	all v: Visitor | 
     		#v.participants = #v.race.participants

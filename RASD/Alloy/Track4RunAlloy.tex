@@ -1,6 +1,6 @@
 \section{Track4Run Alloy analysis}
 
-    In the Track4Run service is very important that the application allows the organizer to plan a race and define the path, users of Data4Help to enroll to the race and spectator, not registered people, to track the participant during the run. The below model is built to verify all these properties and verify one of them by the assertion.
+    In the Track4Run service is very important that the application allows the Organizers to plan a race and define the path, Participants to enroll to the race and Spectators to track the participant during the run. The model below is built to verifies all these properties and verify one of them with the assertion.
 
     \subsection{Signatures}
         
@@ -10,12 +10,12 @@
     
     \subsection{Facts}
  
-        In this section are defined all the constraints needed in order to create a consistent model of Track4Run.
+        In this section all the constraints needed in order to create a consistent model of Track4Run are defined.
     
         \lstinputlisting[language=alloy]{./Alloy/AlloyCode/T4R_facts.als}
 
     \subsection{Asserts}
     
-        At the end this assert verify if the model built respects the most critical constraint. The others can be visualize clearly on the graph in the Result Section.
+        At the end this assert verifies if the model built respects the most critical constraint. The others can be visualised clearly on the graph in the Result Section.
     
         \lstinputlisting[language=alloy]{./Alloy/AlloyCode/T4R_asserts&pred.als}

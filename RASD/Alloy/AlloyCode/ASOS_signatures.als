@@ -44,8 +44,8 @@ open util/boolean
     one sig AutomatedSOS{
     	registeredUsers : set User
     } { 
-    	//All the users registered to AutomatedSOS are elderly people
-    	//(Therefore as it is expressed in the domain assumption, with an age grather than 65 years but for model semplification we use 5 as limit)
+    	//All the users registered to AutomatedSOS are Elderly people
+    	//(Therefore as it is expressed in the domain assumptions, with an age grather than 65 years but for model semplification we use 5 as limit)
     	registeredUsers.elderUser
     }
     
@@ -55,9 +55,5 @@ open util/boolean
     	fiscalCode: lone FiscalCode,
     	position: lone Location
     }
-    
-    check ambulanceRequestWhenBpmNotOutOfBound for 5
-    check noAmbulanceWhenBpmOutOfBound for 5
-    run show for 5
     
     

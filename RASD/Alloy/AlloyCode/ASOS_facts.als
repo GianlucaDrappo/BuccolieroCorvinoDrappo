@@ -44,14 +44,14 @@
     }
     
     
-    //No request for the same event to the same user
+    //No request for the same event to the same user (This is a simplification for the model, because we do not have a time and a date as identifiers for a request). 
     fact allRequestAreUnique{
     	all disj r1, r2: AmbulanceRequest |
     		r1.valueOutOfRange != r2.valueOutOfRange or r1.bpm != r2.bpm or r1.fiscalCode != r2.fiscalCode or r1.position != r2.position	
     }
     
     
-    // The bpm in the request refer to the bpm of a user registered to ASOS so with a age grather than 65 (6 in the model)
+    // The bpm in the request refers to the bpm of a user registered to ASOS so with an age grather than 65 (6 in the model)
     fact requestHasTheBpmOfTheUser{
     	all r: AmbulanceRequest |
     		(r.bpm in AutomatedSOS.registeredUsers.hData.bpm) and (r.fiscalCode in AutomatedSOS.registeredUsers.fiscalCode)

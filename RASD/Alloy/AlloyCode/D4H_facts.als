@@ -1,4 +1,4 @@
-    //Each fiscal code is related to one user
+    //Each fiscal code is related to only one user
     fact noFiscalCodeWithoutUser{
     	no fc: FiscalCode | all u: User | !(fc in u.fiscalCode)
     }
@@ -48,7 +48,7 @@
     	all disj tp1, tp2 : ThirdParty | tp1 != tp2
     }
     
-    //No Health Data Acquire from the same User at the same time
+    //No Health Data acquired from the same User at the same time
     fact differentAcquisition{
     	no hd1, hd2: HealthData | one u: User |
     		(hd1 in u.hData) and (hd2 in u.hData) and hd1.acquisition = hd2.acquisition
@@ -78,7 +78,7 @@
     }
     
     
-    //This fact certificate that a reply has data of the requested user if the answer of the user is positive.
+    //This fact certificates that a reply has data of the requested user if the answer of the user is positive.
     fact singleRequestAccepted {
     	all srp: SingleReply |  one u: User |
     		u.fiscalCode = srp.associatedRequest.fiscalCode and (#srp.data > 0 iff srp.answer.isTrue) and(srp.answer.isTrue iff (u.hData in srp.data ))			
@@ -103,14 +103,14 @@
     }
     
     
-    //The fact certificate that a reply for a multiple request contains data just if the number of users with that filter is grather then 1000 (to verify the assertion we use 2 instead 1000).
+    //The fact certificates that a reply for a multiple request contains data just if the number of users with that filter is grater than 1000 (to verify the assertion we use 2 instead 1000).
     fact multipleRequestAccepted {
     	all mrp : MultipleReply | all u: User |
     		( (u.hData in mrp.data and #mrp.data > 0 ) iff 
     			#usersWithCorrectFilters[mrp.associatedRequest.filterUserData, mrp.associatedRequest.filterAcquisitionData] > 2)
     }
     
-    //This function gives the subset of user of data4Hepl with the data requested. 
+    //This function gives the subset of user of Data4Help with the data requested. 
     fun usersWithCorrectFilters [ userFilter: UserData, acqFilter: AcquisitionData ] : set User {
     	{u : Data4Help.users | (u.uData = userFilter) or (u.hData.acquisition = acqFilter)}
     }

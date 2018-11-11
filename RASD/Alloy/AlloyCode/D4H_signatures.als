@@ -37,7 +37,7 @@ open util/boolean
     //The time of sampling
     sig Time{}
     
-    //The ID is the Fiscal code or the VAT code of the third party.
+    //The Third Party that can be identified with a VAT number (in case of enterprise) or fiscal code (in case of individual).
     sig ThirdParty {}
     
     one sig Data4Help{
@@ -55,7 +55,7 @@ open util/boolean
     	filterAcquisitionData: set AcquisitionData
     }{ #filterUserData > 0 or #filterAcquisitionData > 0}
     
-    //Each Reply is associated to one Request and can be positive or negative, and it is positive will return the data requested, otherwise the field data will be empty
+    //Each Reply is associated to one Request and can be positive or negative, and if positive it will return the data requested, otherwise the field data will be empty
     sig SingleReply{
     	associatedRequest: one SingleRequest,
     	answer: Bool,
