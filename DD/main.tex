@@ -1,0 +1,49 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage[<opzioni>]{frontespizio}
+\usepackage{subfigure}
+\usepackage{listing}
+\usepackage{listings}
+\usepackage{alloy-style}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{hyperref}
+\setlist[enumerate]{label*=\arabic*.}
+
+\definecolor{color1}{HTML}{C5CAE9}
+\definecolor{color2}{HTML}{E8EAF6}
+\definecolor{color3}{HTML}{7986CB}
+
+
+
+\begin{document}
+
+\input{frontespizio.tex}
+
+\normalfont
+\newpage
+
+\tableofcontents
+
+%\part{Informal description of the problem}
+
+    \input{introduction.tex}
+    \input{overallDescription.tex}
+    \input{specificRequirements.tex}
+
+%\part{Formal description of the problem}
+
+    \input{formalAnalysisUsingAlloy.tex}
+
+%\part{}
+
+    \input{effortSpent.tex}
+    
+    \nocite{*}
+    \bibliography{thebibliography}
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \bibliographystyle{plain}
+
+\end{document}
