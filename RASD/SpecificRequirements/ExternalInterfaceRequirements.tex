@@ -5,16 +5,18 @@ In this section we are going to better explain the relation between our software
 \subsection{User Interfaces}
 
 \subsubsection{Data4Help interfaces}
-In the pictures below there are mockups for the D4H application.
+In the pictures below there are mockups for the D4H applications.
 
-\textbf{Picture \ref{fig:D4H-login-page}} represents the screen from the login page of D4H.  The registered users (both Individuals and Third-parties) can log into their D4H account writing in their username and password. If not yet registered, the user can access the \emph{Registration pages} trough the link \emph{Sign up now}.
+\textbf{Picture \ref{fig:D4H-login-pages}} represents screens from the login pages of D4H.  The registered users (both Individuals \textbf{Picture \ref{fig:D4H-Individual-login}} and Third-parties \textbf{Picture \ref{fig:D4H-third-party-login}}) can log into their D4H account writing in their username and password. If not yet registered, the user can access the \emph{Registration pages} trough the link \emph{Sign up now}.
 
 \begin{figure}[H]
   \centering
   
-  \includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-login.png}
-  \caption{D4H Login page}
-  \label{fig:D4H-login-page}
+  \subfigure[D4H Individual Login page]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-login.png}\label{fig:D4H-Individual-login}}
+  \subfigure[D4H Third-party Login page]{\includegraphics[width=0.30\textwidth]{pictures/mockup/D4H-login-Enterprise.png}\label{fig:D4H-third-party-login}}
+  \caption{D4H Login pages}
+  \label{fig:D4H-login-pages}
+  
 \end{figure}
 
 
@@ -30,7 +32,7 @@ In \textbf{picture \ref{fig:D4H-registration}} there are two registration forms 
   \label{fig:D4H-registration}
 \end{figure}
 
-In \textbf{picture \ref{fig:D4H-individual-account}} there are screens from an Individual account. In the first image (\textbf{picture \ref{fig:D4H-individual-personal-data}}) the registered user can look at his gathered data, collected in a table. In the second image (\textbf{picture \ref{fig:D4H-individual-subscribed-data}}), instead, the application lets the Individual see a list of all Third-parties that are subscribed to his not-anonymized data and to delete the subscription at any moment.
+In \textbf{picture \ref{fig:D4H-individual-account}} there are screens from an Individual account. In the first image (\textbf{picture \ref{fig:D4H-individual-personal-data}}) the registered user can look at his gathered data, collected in a table; in the \emph{Location} columns there is a link to open the position on a map, retrieved from \emph{Google Maps}. In the second image (\textbf{picture \ref{fig:D4H-individual-subscribed-data}}), instead, the application lets the Individual see a list of all Third-parties that are subscribed to his not-anonymized data and to delete the subscription at any moment.
 
 \begin{figure}[H]
   \centering
@@ -82,25 +84,26 @@ AutomatedSOS service provides a sign in interface (\textbf{picture \ref{fig:Asos
 
 
 \subsubsection{T4R}
-In the pictures below there are mockups for T4R.
+In the pictures below there are mock-ups for T4R.
 
-The first image (\textbf{picture \ref{fig:T4R-login}}) is a possible design of the T4R sign in page. The application gives the possibility to access and register as \emph{Organizer}, to access as \emph{Runner} (clicking on the ``Access with D4H" button) or to use the application as \emph{Visitor} clicking on the ``TRACKING" button.
+The first two images (\textbf{picture \ref{fig:T4R-login}}) are a possible design of the T4R sign in page. The application gives the possibility to access and register as \emph{Organiser} (\textbf{picture \ref{fig:T4R-organizer-login}}), to access as \emph{Runner} (\textbf{picture \ref{fig:T4R-runner-login}}) or to use the application as \emph{Visitor} clicking on the ``TRACKING" button (both picture \ref{fig:T4R-organizer-login} and \ref{fig:T4R-runner-login}). Participants can log in through their D4H account.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-login.png}
-  \caption{T4R Login page}
+  \subfigure[Organiser log in]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-login-organiser.png}\label{fig:T4R-organizer-login}}
+  \subfigure[Participant log in]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-login-runner.png}\label{fig:T4R-runner-login}}
+  \caption{T4R Log in pages}
   \label{fig:T4R-login}
 \end{figure}
 
-The following tree screens are a representation of how an Organizer account in T4R looks like. This Application provides a page to create a new run (\textbf{picture \ref{fig:T4R-organizer-new-run}}); a page with already created runs (\textbf{picture \ref{fig:T4R-organizer-organized-run}}) and a page to see the rankings of past races (\textbf{picture \ref{fig:T4R-organizer-ranking}}).
+The following three screens are a representation of how an Organiser account in T4R looks like (in the Organiser edition). This Application provides a page to create a new run (\textbf{picture \ref{fig:T4R-organizer-new-run}}); a page with already created runs (\textbf{picture \ref{fig:T4R-organizer-organized-run}}) and a page to see the rankings of past races (\textbf{picture \ref{fig:T4R-organizer-ranking}}).
 
 \begin{figure}[H]
   \centering
   \subfigure[New Run Creation]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-New-run.png}\label{fig:T4R-organizer-new-run}}
   \subfigure[Organised Run]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-organized-run.png}\label{fig:T4R-organizer-organized-run}}
   \subfigure[Ranking]{\includegraphics[width=0.30\textwidth]{pictures/mockup/T4R-organizer-ranking.png}\label{fig:T4R-organizer-ranking}}
-  \caption{T4R Organizer account pages}
+  \caption{T4R Organiser account pages}
   \label{fig:T4R-organizer-account}
 \end{figure}
 
