@@ -502,22 +502,28 @@
                     \textbf{Entry Condition} & Organiser must have an organiser account in T4R system.\\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
-                                                \item The Organiser presses on ``\emph{New Run}" button.
-                                                \item The Organiser specifies date, time, place and the maximum number of participants.
-                                                \item The system creates this new run, stores it and sends a notification email to the Organiser.
+                                        \item The Organiser presses on ``\emph{New Run}" button.
+                                        \item The Organiser specifies date, time, place and the maximum number of participants.
+                                        \item The Organiser clicks on the ``\emph{Path}" button.
+                                        \item T4R checks if there are no other races in the same place at the same time.
+                                        \item If there are not, T4R asks Google Maps to provide the map of the location to the Organiser.
+                                        \item Google Maps sends the map of the location to the Organiser.
+                                        \item The Organiser keeps selecting the positions that define the path he wants to create until he is satisfied.
+                                        \item Google Maps sends the finalised path to T4R.
+                                        \item T4R sends to the Organiser a confirmation email.
                                             \end{enumerate}\\
                      \hline
                     \textbf{Exit Condition} & A new race has been created.\\
                      \hline
-                    \textbf{Exception} & If there is another stored race with the same data, time and place, the system                       handles the exception, showing an error message to the organiser. \\
+                    \textbf{Exception} & If there is another stored race with the same data, time and location, the system                       handles the exception, showing an error message to the organiser. \\
                      \hline
                 \end{tabular}  
             \end{table} 
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.52]{pictures/OrganizationRunSequenceDiagram.png}}
-                \caption{Sequence diagram representing the request in order to create a new run.}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.71]{pictures/RunOrganizationSequenceDiagram.png}}
+                \caption{Sequence diagram representing the request performed to create a new run.}
                 \label{fig:T4R-run-organization}
             \end{figure}
             
