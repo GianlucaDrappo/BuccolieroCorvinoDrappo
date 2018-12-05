@@ -566,7 +566,7 @@
         \subsubsection{Participant tracking}
             
             Every Visitor, registered or not, is able to track participants on a map during the race and, if there is more then one run at the same time, they can choose which run to watch. To provide this service, the system interacts with Google Maps. This can be done in both the Organisers edition and normal T4R application.
-            In order to ask the permission to track the runners, T4R performs a single user data request through D4H for each of them. Therefore, in order to effectively participate to the run, each Participant has to accept the request, otherwise he gets removed from the race. The way the request is performed is shown in figure \ref{fig:IndividualRequest}, where T4R acts as a Third-party.
+            In order to ask the permission to track the runners, T4R performs a single user data request with subscription through D4H for each of them. Therefore, in order to effectively participate to the run, each Participant has to accept the request, otherwise he gets removed from the race. The way the request is performed is shown in figure \ref{fig:IndividualRequest}, where T4R acts as a Third-party.
             
             \begin{table}[H]
             	\centering
@@ -578,14 +578,13 @@
                                             \item Map service
                                         \end{itemize} \\
                      \hline
-                    \textbf{Entry Condition} & There is no entry condition \\
+                    \textbf{Entry Condition} & T4R have to do an "Individual request" to D4H for each ranners. \\
                      \hline
                     \textbf{Events Flow} & \begin{enumerate}
                                                 \item The User launches the application.
                                                 \item They press on the ``\emph{Track runners}" button.
                                                 \item The system shows the list of current runs.
                                                 \item The User selects the run of interest.
-                                                \item The system asks for runners positions to D4H service.
                                                 \item D4H sends computed position to T4R.
                                                 
                         \item T4R sends to Map service runners position
