@@ -149,14 +149,14 @@
                     \textbf{Events Flow} & \begin{enumerate}
                         \item The Third-party clicks on the ``\emph{Group request}" button.
                         \item The Third-party inserts the parameters of interest  and, if it wants to subscribe, granularity and frequency of update.
-                        \item The Third-party decides whether it wants to subscribe to this particular research by checking the specific box or not, then clicks on the ``\emph{Search}" button to have D4H perform the query.
+                        \item The Third-party decides whether it wants to subscribe to this particular research by checking the specific box or not, then clicks on the ``\emph{Search}" button to have D4H perform the multiple search.
                         \item \emph{Data4Help} does the research and evaluates the results.
                         \item D4H sends back the result to the Third-party.
                     \end{enumerate} \\
                      \hline
                     \textbf{Exit Condition} & The Third-party receives the requested information. \\
                      \hline
-                    \textbf{Exception} & The number of Individuals involved in the query is lower                        than 1000, therefore D4H sends an error message back to the                      Third-party. \\
+                    \textbf{Exception} & The number of Individuals involved in the multiple search is lower than 1000, therefore D4H sends an error message back to the Third-party. \\
                      \hline
                 \end{tabular}  
             \end{table}
@@ -606,7 +606,7 @@
             
             \begin{figure}[H]
                 \centering
-                \makebox[\textwidth][c]{\includegraphics[scale=0.80]{pictures/TrackingSequenceDiagram.png}}
+                \makebox[\textwidth][c]{\includegraphics[scale=0.80]{pictures/participantTrackingSequenceDiagram.png}}
                 \caption{Sequence diagram representing the request in order to see participant position on a map during the run.}
                 \label{fig:T4R-runner-tracking}
             \end{figure}
