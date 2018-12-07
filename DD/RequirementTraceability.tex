@@ -1,0 +1,106 @@
+\chapter{Requirements Traceability}
+
+In this chapter, there are traceability matrix, one per application, to explain how requirements defined in the RASD map to the component defined before (in the Appendix \ref{GoalRequirementsDomainAssumptions} there are lists of requirements, Goals and Domain Assumptions)
+
+
+        \subsubsection{AutomatedSOS}
+            \definecolor{light}{HTML}{B3E5FC}
+            \definecolor{dark}{HTML}{81D4FA}
+        
+        \begin{table}[H]
+        \hspace{-1cm}
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|c|c|}
+                    \hline
+                    \rowcolor[HTML]{03A9F4} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{COMPONENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal2 : status monitorin} & \ref{R2-subscription} & Login\&Registration  Manager & Subscription Request\\
+                    \hline
+                    \ref{goal2 : ambulance}  & \ref{R2-data-and-ambulance} & Data collector \& Checker & Ambulance dispatching\\
+                    \hline
+                \end{tabular}  
+            \end{table}
+
+        \subsubsection{Track4Run}
+            \definecolor{light}{HTML}{DCEDC8}
+            \definecolor{dark}{HTML}{C5E1A5}
+        
+        \begin{table}[H]
+            	\hspace{-2cm}
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|c|c|}
+                    \hline
+                     \rowcolor[HTML]{8BC34A} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{COMPONENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal3 : run organization} & \ref{R3-organizer-registration} & Registration\&Login Manager & Organiser registration and log in\\
+                    \hline
+                    \ref{goal3 : run organization}  & \ref{R3-run-organization} & Race Manager & Run organisation\\
+                    \hline
+                    \ref{goal3 : run organization}  & \ref{R3-run-different-time} & Race Manager & Run organisation\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-login-enrollin} & Race Manager & Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-enrolling-different-time} & Race Manager & Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : enrolling}  & \ref{R3-decreasing-participant-number} & Race Manager & Enrolment to a run\\
+                    \hline
+                    \ref{goal3 : tracking}  & \ref{R3-visitors} & Tracker Manager & Participant tracking\\
+                    \hline
+                     \ref{goal3 : tracking}  & \ref{R3-ranking-end} & Tracker Manager & Participant tracking\\
+                    \hline
+                     \ref{goal3 : run organization} \ref{goal3 : enrolling}  & \ref{R3-ranking-storage} & Account Manager & Rank history\\
+                    \hline
+                \end{tabular}  
+            \end{table}
+            
+            
+            \subsubsection{Data4Help}
+            \definecolor{light}{HTML}{FFF9C4}
+            \definecolor{dark}{HTML}{FFF59D}
+        
+         \begin{table}[H]
+         \hspace{-2,5cm}
+                \rowcolors{2}{dark}{light}
+                \begin{tabular}{|c|c|p{4cm}|c|}
+                    \hline
+                    \rowcolor[HTML]{FDD835} \textbf{ GOAL} & \textbf{ REQUIREMENT} & \textbf{COMPONENT} & \textbf{USE CASE ID}\\
+                    \hline
+                    \ref{goal1 : monitoring} & \ref{R1-Individual-registration} & Registration\&Login Manager  & Individual registration/log \\
+                    \hline
+                     \ref{goal1 : monitoring} & \ref{R1-third-party-registration} & Registration\&Login Manager & Third-party registration and log in\\
+                    \hline
+                    \ref{goal1 : individual monitoring} & \ref{R1-individual-request} & Request Manager & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-subscription} & Subscription Manager & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1: individual privacy} & \ref{R1-individual-accept-request} & Privacy Manager & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1: individual privacy} & \ref{R1-individual-refused-request} & Privacy Manager & Single user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription}  & \ref{R1-unsubscription} & Subscription Manager and Account Manager & Single User data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-Individual-unsubscription} & Subscription Manager and Account Manager & Single User data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-subscription} & Request Managere & Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-requests}& Query Manager & Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-req-approuved}& Request Manager & Aggregated user data request and subscription\\
+                    \ref{goal1 : group monitoring} & \ref{R1-group-request-refused}& Request Manager & Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : group monitoring} & \ref{R1-group-data-anonymized}& Request Manager & Aggregated user data request and subscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-unsubscription}& Subscription Manager and Account Managere & Aggregated user data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-third-party-unsubscription}& Subscription Manager and Account Managere & Aggregated user data unsubscription\\
+                    \hline
+                    \ref{goal1 : subscription} & \ref{R1-subscription-updates} & Subscription Manager & Collected data during Subscription \\
+                     \hline
+                    \ref{goal1: individual privacy} &\ref{R1-gathered-data} & Data Gatherer & Data Collection and Visualisation\\
+                     \hline
+                    \ref{goal1: individual privacy} &\ref{R1-individual-personal-data} & Account Manager & Data Collection and Visualisation\\
+                    \hline
+                    \ref{goal1 : monitoring} & \ref{R1-history-request}& Account Manager & Third-parties request history \\
+                    \hline
+                \end{tabular}  
+            \end{table}

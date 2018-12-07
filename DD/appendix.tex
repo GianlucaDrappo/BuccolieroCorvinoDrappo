@@ -1,0 +1,151 @@
+\chapter{Goals, Requirements and Domain Assumptions}
+\label{GoalRequirementsDomainAssumptions}
+
+
+\section{Goals}
+The goals defined for the applications are reported below. For more information, refer to the RASD.
+
+\subsection{Data4Help}
+
+    \begin{enumerate}[label={[}G1.\arabic*{]}, leftmargin=*]
+        \item \label{goal1 : monitoring} Third-parties have to be able to monitor the location and health status of Individuals.
+        \begin{enumerate}[label={[}G1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+            \item \label{goal1 : individual monitoring}Third-parties have to be able to request data of an Individual through his/her fiscal code.
+            \item \label{goal1 : group monitoring} Third-parties have to be able to request data of groups of Individuals.
+            \item \label{goal1 : subscription} Third-parties have to be able to subscribe to user data, specifying the frequency of updates and the desired granularity of data.
+        \end{enumerate}
+        \item \label{goal1: individual privacy} Individuals have to be able to decide whether to share their not anonymised data (gathered through smart devices) or not and to see what they are sharing to whom.
+    \end{enumerate}
+    
+    \subsection{AutomatedSOS}
+    \begin{enumerate}[label={[}G2.\arabic*{]}, leftmargin=*]
+        \item \label{goal2 : status monitorin} Elderly people's health status has to be constantly monitored.
+        \item \label{goal2 : ambulance} An ambulance has to arrive to Elderly people's location when their vital signs go below a certain threshold.
+        %specify threshold?
+    \end{enumerate}
+    
+    \subsection{Track4Run}
+    \begin{enumerate}[label={[}G3.\arabic*{]}, leftmargin=*]
+        \item \label{goal3 : run organization} Organisers have to be able to define the details of runs.
+        \item \label{goal3 : enrolling} Runners have to be able to enrol to runs.
+        \item \label{goal3 : tracking} Visitors have to be able to track Participants' position on a map.
+    \end{enumerate}
+
+
+\section{Requirements}
+    
+    \subsection{Data4Help}
+\begin{enumerate}[label={[}R1.\arabic*{]}, leftmargin=*]
+
+    \item \label{R1-Individual-registration} The system allows Individuals to register, requiring name, surname, fiscal code, password and email in order to create a new Individual account.
+
+    \item \label{R1-third-party-registration} The system allows Third-parties to register, requiring the company name, VAT number, email and password in order to create a new Third-party account.
+    
+    \item \label{R1-gathered-data} The application retrieves from smart-watches the following data, associating them to the user: 
+    \begin{itemize}
+        \item beats per minute ( bpm );
+        \item number of steps;
+        \item location;
+        \item time-stamp of the measurement.
+    \end{itemize}
+    
+    \item \label{R1-individual-request} The system allows Third-parties to request data of Individuals and the latter to accept or refuse them. 
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item \label{R1-individual-accept-request} If the Individual accepts, the system sends to the Third-party all the data gathered from the specified user.
+    
+        \item \label{R1-individual-refused-request} If the Individual refuses or he/she is not registered, the system sends to the Third-party an error message.
+    \end{enumerate}
+    
+    \item \label{R1-group-requests} Upon Third-parties request, the system can perform parametric searches based on geographical areas, age, genre, time of the day. The result of the query is then stored and evaluated for approval.
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item \label{R1-group-req-approuved} If the request is approved, the saved data is provided to the Third-party.
+        \item \label{R1-group-request-refused} If the request is not approved, an error message is sent to the Third-party.
+        \item \label{R1-group-data-anonymized} In order to anonimize data, the application only sends information related to the health status of individuals (e.g. bpm, step, genre, age).
+    \end{enumerate}
+        
+    \item \label{R1-third-party-subscription} The application allows Third-parties to subscribe to certain data.
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item \label{R1-subscription-updates} The application, if the Third-party subscribed to some data (belonging to Individuals or group searches), sends updates to the Third-party aggregating the data with the specified granularity and frequency.
+    \end{enumerate}
+        
+    \item \label{R1-unsubscription} The application allows Individuals withdrawals of consent for accessing their data and Third-party unsubscriptions.
+    \begin{enumerate}[label={[}R1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
+        \item \label{R1-Individual-unsubscription} If the Individual withdraws consent for the access of his data, a message is sent to the subscribed Third-party and data is no longer provided.
+        \item \label{R1-third-party-unsubscription} If the Third-party no longer wishes to collect data from an Individual, a message is sent to him/her and his/her data is no longer sent.
+    \end{enumerate}
+        
+        
+    \item \label{R1-history-request} The system allows Third-parties to access to their request history and results.
+    
+    \item \label{R1-individual-personal-data} The system allows Individuals to check gathered data.
+
+\end{enumerate}
+
+
+\subsection{AutomatedSOS}
+
+\begin{enumerate}[label={[}R2.\arabic*{]}, leftmargin=*]
+
+    \item \label{R2-data-and-ambulance} The system has to analyse user data and sends the location of the user to the ambulance service in case of emergency, when health values goes beyond the threshold.
+    
+    \item \label{R2-subscription} The system gives the possibility to subscribe to the service upon request, only after checking the Individual age from his/her fiscal code.
+\end{enumerate}
+
+
+\subsection{Track4Run}
+
+\begin{enumerate}[label={[}R3.\arabic*{]}, leftmargin=*]
+
+    \item \label{R3-login-enrollin} The system allows Participants to log into the application through their Data4Help account and, after they are logged in, to enrol the the runs available. They should also be able to apply filters to ease the research (e.g.: place, time, date range).
+    
+    \item \label{R3-enrolling-different-time} The system allows the enrolling of Participants only if they are not enrolled in a race at the same time.
+    
+    \item \label{R3-visitors} The system allows Visitors to access the application as host-users, without registration, by giving them only the possibility to track the Participants.
+    
+    \item \label{R3-ranking-end} At the end of each run, the systems shows the rank to all Users watching it.
+    
+    \item \label{R3-ranking-storage} The system stores the ranks of finished races so that both Participants and Organisers can access to the race history.
+    
+    \item \label{R3-organizer-registration} The system allows the registration of Organisers without requiring also Data4Help registration.
+    
+    \item \label{R3-run-organization} In order to organise a run, the application requires location, data, time and the maximum number of participants.
+    
+    \item \label{R3-decreasing-participant-number} The system needs to update subscriptions to the runs, decreasing the number of allowed participants. It must not allow further subscriptions if there are no leftover places.
+    
+    \item \label{R3-run-different-time} The system does not allow that two or more runs are organised at the same place and time.
+
+\end{enumerate}
+
+
+\section{Domain Assumptions}
+
+    \subsubsection{Data4Help}
+        \begin{enumerate}[label={[}D1.\arabic*{]}, leftmargin=*]
+            \item Acquired data is precise enough.
+            
+            \item Each Individual can be identified unambiguously through his/her fiscal code.
+            
+            \item One anonymized, data cannot be associated to specific Individuals.
+            
+            \item Every interaction gets correctly encoded.
+            
+            \item Third-parties are assumed to be companies that want to gather data, therefore they have a VAT code.
+            
+            \item Third-parties know the fiscal code of the Individual they are looking for.
+        \end{enumerate}
+        
+        \subsubsection{AutomatedSOS}
+            \begin{enumerate}[label={[}D2.\arabic*{]}, leftmargin=*]
+                \item An ambulance service capable of handling requests exists. It is also capable of receiving the personal data of the Elderly person and his location.
+                
+                \item \label{Asos-tresholds} The thresholds beyond which a person is considered to be in need of help are under 40 bpm and above 130 bpm.
+                
+                \item The service is offered in Italy (118 is the emergency number for the ambulance service).
+            \end{enumerate}
+            
+            \subsubsection{Track4Run}
+                \begin{enumerate}[label={[}D3.\arabic*{]}, leftmargin=*]
+                    \item Maps and tracking services are accurate enough.
+                    
+                    \item The place where the run is held exists.
+                \end{enumerate}

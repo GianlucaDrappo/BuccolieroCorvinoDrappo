@@ -1,32 +1,5 @@
 \section{Purpose}
-    This document will provide an analysis of requirements and specifications of three new services the \emph{TrackMe} company is willing to launch.\\
-    \emph{TrackMe} is a company that wants to develop a software-based service allowing Third-parties to monitor the location and health status of individuals.
-    Said services are described below.
 
-\subsection{Data4Help}
-    \textbf{\emph{Data4Help}} allows \emph{TrackMe} to gather data from Users and to provide them to Third-parties upon request. In particular, it has the following goals:
-    \begin{enumerate}[label={[}G1.\arabic*{]}, leftmargin=*]
-        \item \label{goal1 : monitoring} Third-parties have to be able to monitor the location and health status of Individuals.
-        \begin{enumerate}[label={[}G1.\arabic{enumi}.\arabic*{]}, leftmargin=*]
-            \item \label{goal1 : individual monitoring}Third-parties have to be able to request data of an Individual through his/her fiscal code.
-            \item \label{goal1 : group monitoring} Third-parties have to be able to request data of groups of Individuals.
-            \item \label{goal1 : subscription} Third-parties have to be able to subscribe to user data, specifying the frequency of updates and the desired granularity of data.
-        \end{enumerate}
-        \item \label{goal1: individual privacy} Individuals have to be able to decide whether to share their not anonymised data (gathered through smart devices) or not and to see what they are sharing to whom.
-    \end{enumerate}
+This document will provide an a description of the three new services the \emph{TrackMe} company is willing to launch with respect to their design. Such description will include an analysis of the components the applications will be made of, and the interaction among them.
 
-\subsection{AutomatedSOS}    
-    \textbf{\emph{AutomatedSOS}} provides assistance to Elderly people in case of sudden illness by sending them an ambulance. Hence, its goals are:
-    \begin{enumerate}[label={[}G2.\arabic*{]}, leftmargin=*]
-        \item \label{goal2 : status monitorin} Elderly people's health status has to be constantly monitored.
-        \item \label{goal2 : ambulance} An ambulance has to arrive to Elderly people's location when their vital signs go below a certain threshold.
-        %specify threshold?
-    \end{enumerate}
-    
-\subsection{Track4Run}
-    \textbf{\emph{Track4Run}} allows the organisation of runs, the subscription to them and the tracking of runners through \emph{Data4Help} gathered location. These are the objective the service aims to achieve:
-    \begin{enumerate}[label={[}G3.\arabic*{]}, leftmargin=*]
-        \item \label{goal3 : run organization} Organisers have to be able to define the details of runs.
-        \item \label{goal3 : enrolling} Runners have to be able to enrol to runs.
-        \item \label{goal3 : tracking} Visitors have to be able to track Participants' position on a map.
-    \end{enumerate}
+A detailed list of the goals, the requirements and the domain assumptions of the applications are provided in the \textbf{Appendix \ref{GoalRequirementsDomainAssumptions}}. 
