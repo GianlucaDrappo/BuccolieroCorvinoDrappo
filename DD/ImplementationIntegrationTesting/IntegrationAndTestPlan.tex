@@ -51,7 +51,7 @@ The details concerning the functioning of the software components will not be fu
     After having integrated all the core functionalities of D4H, the log in and registration system (purple rectangle in the \textbf{figure \ref{fig:D4H_DependencyDiagram}}) can be implemented, so that every user can be unequivocally recognised by the system. This last feature has its own dedicated component, aided by the General Communication Manager for the communication with the Client and by the Account Manager for the one with the database.
 
 \subsection{AutomatedSOS}
-    ASOS structure is quite simple, being made only by two components independent from each other, each one offering a different feature. They can be developed in parallel and then integrated together.
+    ASOS structure is quite simple, being made only by two components, as shown in \textbf{figure \ref{fig:ASOS_DependencyDiagram}}. Its development will only require two threads.
     
     \begin{figure}[h]
         \centering
@@ -63,13 +63,13 @@ The details concerning the functioning of the software components will not be fu
     \begin{enumerate}
         \item \emph{Ambulance dispatching}
     \end{enumerate}
-    It is of capital importance for this feature (red rectangle in the \textbf{figure} \ref{fig:ASOS_DependencyDiagram}) to be functioning correctly, hence it has to be thoroughly tested (both function-wise, checking if the ambulance is called \emph{if and only if} the health data received from D4H is over the critical threshold, and performance-wise, verifying that the ambulance is called within 5 seconds after receiving the critical measurement). The only component that deals with it is the Data Collector $\&$ Checker, which analyses incoming data and eventually communicates with the ambulance service. 
+    It is of capital importance for this feature (red rectangle in the \textbf{figure} \ref{fig:ASOS_DependencyDiagram}) to be functioning correctly, hence it has to be thoroughly tested (both function-wise, checking if the ambulance is called \emph{if and only if} the health data received from D4H is over the critical threshold, and performance-wise, verifying that the ambulance is called within 5 seconds after receiving the critical measurement). The only component that deals with it is the Data Collector $\&$ Checker, which analyses incoming data and eventually communicates with the ambulance service. Until the next feature is not integrated, this one can be tested using health data that cover all possible situations (warning the ambulance service that it will receive some false alarms).
     
     \newpage
     \begin{enumerate} [resume]
         \item \emph{Subscription request}
     \end{enumerate}
-    This feature (purple rectangle in the \textbf{figure \ref{fig:ASOS_DependencyDiagram}}) allows an Individual to subscribe to ASOS and it works just like a D4H subscription. It only involves the Login $\&$ Subscription Manager, that receives the registration request from the user and checks through D4H Communicator Manager Interface if he is registered to D4H as an Individual.
+    This feature (purple rectangle in the \textbf{figure \ref{fig:ASOS_DependencyDiagram}}) allows an Individual to subscribe to ASOS and it works just like a D4H subscription. It involves both the Login $\&$ Subscription Manager, that receives the log in request from the user and checks through D4H Communicator Manager Interface if he/she is registered to D4H as an Individual, and the Data Collector $\&$ Checker, that performs the actual subscription request through D4H Request Manager Interface. After having integrated this feature, the ASOS system can be tested as a whole using real data.
 
 \subsection{Track4Run}
     There are five features that can be identified in T4R, highlighted in \textbf{figure \ref{fig:T4R_DependencyDiagram}} below.
@@ -97,7 +97,7 @@ The details concerning the functioning of the software components will not be fu
     \begin{enumerate} [resume]
         \item \emph{Tracking of Participants}
     \end{enumerate}
-    After the race management has been completed, the tracking system (light blue rectangle in \textbf{figure \ref{fig:T4R_DependencyDiagram}}) should be implemented and integrated, in order to test its functioning during a fully organised race. This feature is the only one that concerns the Tracker Manager, so it will be fully integrated and tested by the time this thread reaches termination. Moreover, one more part of the General Request Manager will be integrated.
+    After the race management has been completed, the tracking system (light blue rectangle in \textbf{figure \ref{fig:T4R_DependencyDiagram}}) should be implemented and integrated, in order to test its functioning during a fully organised race. This feature is the only one that concerns the Tracker Manager, so this component will be fully integrated and tested by the time this thread reaches termination. Moreover, the part of the General Request Manager that forwards the tracking request consequent to an enrolment will be integrated.
     \\
     \begin{enumerate} [resume]
         \item \emph{Races history}

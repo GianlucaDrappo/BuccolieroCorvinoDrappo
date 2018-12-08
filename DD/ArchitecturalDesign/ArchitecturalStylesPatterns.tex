@@ -1,1 +1,27 @@
 \section{Selected architectural styles and patterns}
+\label{ArchitecturalStylesAndPatterns}
+
+In this section, it is discussed about the architectural decisions made for the entire system and about the patterns used, particularly related to the back-end of the system.
+
+\subsection{Architectural styles}
+Data4Help and Track4Run systems use the best known and most used architectural style for distributed applications: \emph{Client-Server} with four tiers (Presentation tier, Delivery tier, Application tier and Data tier).
+
+Four-tier architecture allows any one of the four tiers to be upgraded or replaced independently. 
+\begin{itemize}
+    \item \textbf{Presentation Tier}: The user interface is implemented on a smartphone and uses a standard graphical user interface with different modules running on the application server.
+    \item \textbf{Supervisor Tier}: It is implemented on the Web Server, that uses the HTTPS protocol to receive and forward messages to the next tier, acts as a balancer for computational loads and replaces failed components.
+    \item \textbf{Application Tier}: The system logic is on a separate machine, one per application. Each of them is, however, replicated on several machines.
+    \item \textbf{Data Tier}: The relational database management system on the database server contains the data storage logic.
+\end{itemize}  
+
+Also ASOS system is structured as Client-Server Application but with only three tiers: presentation tier, delivery tier and application tier (with the same characteristics and functionalities presented before). It does not contain a Data tier, because the system exploits the D4H application to obtain user data and does not need to store any additional information.
+
+\subsection{Selected patterns}
+
+\begin{enumerate}
+    \item \textbf{Transaction Based Delivery}: All operations involved in the reception of a message are performed under one transactional context guaranteeing ACID behaviour. This pattern can be applied to \emph{Request Manager} and \emph{General Communication Manager} components in D4H and to the \emph{General Request Manager} in T4R, in charge of receiving and forwarding client messages.
+    \item \textbf{Stateless Components}: Application components are implemented such that they do not have an internal state. It's the case of Application Tier components, whose information are stored in and retrieved from the external database; in this way in case of failure, any information can't be lost.
+    \item \textbf{Dedicated Components}: Dedicated application components are provided exclusively for each client using the application. This pattern is applied to the \emph{Subscription Manager} component, that has a dedicated instance for each request with subscription (both single and multiple requests).
+    \item \textbf{Watch-dog}: Applications cope with failures automatically by monitoring and replacing application component instances if the provider-assured availability is insufficient. The Web Server fulfils this role in the architecture of the three applications: the various components on the application tier are replicated across multiple machines, so if there is a failure in one of them, the Web Server can redirect the traffic on another machine seamlessly, since said components are stateless. Moreover, it is replicated itself so that the applications are guaranteed to work even if a machine fails (this allows to have multiple instances of the watch-dog too). Note that also the Subscription Manager is developed in a watch-dog fashion, being it capable of detecting the failures of the different instances of the sub-component and of replacing them.
+    \item \textbf{Elastic components}: A componentized application uses multiple compute nodes provided by an elastic infrastructure. Also in this case, the Web Server is responsible for the load balancing of the computation across the multiple machines of the application tier. This balancing could quickly change during a run, for example, where the continuously updated position of the Participants could impact on T4R server performance.
+\end{enumerate}
