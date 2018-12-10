@@ -19,7 +19,209 @@
   basicstyle=\ttfamily
 } 
 
+This section will discuss in detail the various interfaces of the components presented in the \textbf{section \ref{ComponentView}}. In particular for each of them, it will display all the signatures of the methods with a particular focus on inputs and return parameters, in a Java-like style.
 
-\begin{lstlisting}[frame=single]  
-%code
+To better understand the code, the boolean return parameters are used when the method needs to send a confirmation or an error notification to the caller. While, the other types of parameters are referred to classes that will be developed during the implementation phase.
+
+Moreover, these methods are the same presented in the sequence diagrams.
+
+
+\subsection{Data4Help}
+
+Concerning Data4Help the interfaces provided by the components are the following.
+
+This interface allows the Request Manager to perform a look up on the database.
+\begin{lstlisting}
+public interface QueryManagerInterface{
+	public UserData getUserData(String fiscalCode);
+	public List<UserData> multipleRequest(List<Filters> filters);
+}
+\end{lstlisting}
+
+This interface allows the Account Manager to communicate with the Subscription Manager in case of unsubscription, to notify it that has to delete the instance related to that subscription.
+\begin{lstlisting}
+public interface SubsciptionManagerInterface{
+	public boolean deleteInstance(int subID);
+}
+\end{lstlisting}
+
+This interface allows the Request Manager to communicate with the Account Manager, that stores the request in the database.
+\begin{lstlisting}
+public interface RequestStoringInterface{	
+	public boolean storeRequest(Request request);
+}
+\end{lstlisting}
+
+This interface allows the Request Manager to interact with the Privacy Manager in case of single user request.
+\begin{lstlisting}
+public interface PrivacyManagerInterface{
+	public boolean privacyRequest(String fiscalCode);
+}
+\end{lstlisting}
+
+This interface allows to the inside components to communicate with the outside through the General Communication Manager.
+\begin{lstlisting}
+public interface DispatcherInterface{
+	public boolean privacyRequest(String fiscalCode);
+	public void unsubscriptionNotification(String thirdPartyVATCode);
+}
+\end{lstlisting}
+
+This interface allows the General Communication Manager to forward the user data, collected from the client, to the Data Gatherer that stores them in the database.
+\begin{lstlisting}
+public interface DataGathererInterface{
+	public void sendData(UserData data);
+}
+\end{lstlisting}
+
+This interface allows the General Communication Manager to forward the log in and registration request coming from both client types.
+\begin{lstlisting}
+public interface LoginRegistratioInterface{
+	public boolean userRegistration(RegistrationParameters regParameters);
+	public boolean checkCredential(String mail, String password);
+}
+\end{lstlisting}
+
+This interface allows the components interested in managing accounts to communicate with the Account Manager, that can look up for data or modify the database as requested.
+\begin{lstlisting}
+public interface AccountInterface{
+	public boolean userRegistration(RegistrationParameters regParameters);
+	public boolean checkCredential(String mail, String password);
+	public boolean subscriptionRequest(String fiscalCode);
+	public boolean requestOfUnsubscription(int subID);
+	public boolean removeSubscription(int groupSearchID);
+	public UserData getGatheredData(String fiscalCode);
+	public RequestHistory getRequestHistory(String thirdPartyVATCode);
+	public UserData showSpecificRequest(int reqID);
+}
+\end{lstlisting}
+
+This interface allows the Third Party Client to send requests   to the system.
+\begin{lstlisting}
+public interface RequestManagerInterface{
+	public UserData singleRequest(String fiscalCode);
+	public List<AnonymizedHealtData> multipleRequest(List<Filters> filters);
+	public UserData singleRequestWithSubscription(String fiscalCode);
+	public List<AnonymizedHealtData> multipleRequestWithSubscription(List<Filters> filters);
+}
+\end{lstlisting}
+
+This interface allows Clients to send several messages (except for request messages) to the system.
+\begin{lstlisting}
+public interface CommunicationManagerInterface{	
+	public boolean registrationRequest(RegistrationParameters regParameters);
+	public boolean login(String mail, String password);
+	public boolean requestOfUnsubscription(int subID);
+	public boolean unsubcribe(int groupSearchID);
+	public void sendData(UserData data);
+	public UserData showData();
+	public RequestHistory showRequestHistory();
+	public UserData showSpecificRequest(int reqID);
+}
+\end{lstlisting}
+
+This interface allows the Privacy Manager to send the notification that asks for the Individual (corresponding to the fiscal code requested by the Third-party) permission to use his/her data.
+\begin{lstlisting}
+public interface ClientIndividualInterface{
+	public boolean privacyRequest();
+}
+\end{lstlisting}
+
+This interface allows the Third-party to receive unsubscription notifications and user data, in case of subscription, from the Subscription Manager.
+\begin{lstlisting}
+public interface ClientThirdPartyInterface{	
+	public void unsubscriptionNotification();
+	public void userDataPassing(UserData userData);
+}
+\end{lstlisting}
+
+\subsection{AutomatedSOS}
+
+Concerning AutomatedSOS the interfaces provided by the components are the following.
+
+This interface permits Data4Help to send data related to a subscribed user, to the Data Collector And Checker that verifies the health parameters and in case of emergency, calls the ambulance.
+\begin{lstlisting}
+public interface IncomingDataInterface{
+	public void subscriptionRequest(String fiscalCode);
+	public void dataUpdate(UserData healthData);
+}
+\end{lstlisting}
+
+This interface allows a user to log into the system and subscribe to it, by communicating with the Login and Subscription Manager.
+\begin{lstlisting}
+public interface ASOSLoginInterface{
+	public boolean login(String mail, String password);
+	public boolean subscriptionRequest();
+}
+\end{lstlisting}
+
+
+\subsection{Track4Run}
+
+Concerning Track4Run the interfaces provided by the components are the following.
+
+This interface allows the General Request Manager to forward requests concerning the race, that come from clients, to the Race Manager.
+\begin{lstlisting}
+public interface RaceManagerInterface{
+	public boolean newRaceRequest();
+	public List<Race> filterResults(List<Filter> filters);
+	public List<Race> availableRaceRequest();
+	public int enrolRequest(int raceID);
+	public List<Race> trackingRequest();
+	public List<String> participants(int raceID);
+}
+\end{lstlisting}
+
+This interface permits to communicate with the Account Manager in case of ranking request or log in.
+\begin{lstlisting}
+public interface AccountManagerInterface{
+	public Rank rankingRequest(int raceID);
+	public boolean userRegistration(RegistrationParameters regParameters);
+	public boolean checkCredential(String mail, String password);
+}
+\end{lstlisting}
+
+This interface permits clients to communicate with the internal components of the system through the General Request Manager.
+\begin{lstlisting}
+public interface RequestManagerInterface{
+	public boolean registrationRequest(RegistrationParameters regParameters);
+	public boolean login(String mail, String password);
+	public boolean newRaceRequest();
+	public List<Race> filterResults(List<Filter> filters);
+	public List<Race> availableRaceRequest();
+	public int enrolRequest(int raceID);
+	public List<Race> trackingRequest();
+	public void trackingRequest(int raceID);
+	public Rank rankingRequest(int raceID);
+}
+\end{lstlisting}
+
+This interface allows the visitor, logged in to any client, to receive the map with runners' positions from the Map Service. 
+\begin{lstlisting}
+public interface RunnerIncomingInterface{
+	public void visualizeMap(Map map);
+}
+\end{lstlisting}
+
+This interface permits the General Request Manager to forward the tracking request and the subscription request to the Tracker Manager. Note that the raceStartingTime parameter is used in order to send an Individual request through D4H shortly before the race, so as to perform a subscription to the Participants' D4H accounts.
+\begin{lstlisting}
+public interface TrackerInterface{
+	public void subscriptionRequest(int raceStartingTime, String fiscalCode);
+	public void trackingRequest(List<String> participantsFiscalCodes, int visitorID);
+}
+\end{lstlisting}
+
+This interface allows the General Communication Manager to communicate with the Registration And Login Manager in case of log in and registration requested.
+\begin{lstlisting}
+public interface RegistrationAndLoginInterface{
+	public boolean userRegistration(RegistrationParameters regParameters);
+	public boolean checkCredential(String mail, String password);
+}
+\end{lstlisting}
+
+This interface lets the Tracker Manager receive the data of the runners from Data4Help.
+\begin{lstlisting}
+public interface IncomingDataInterface{
+	public void sendData(UserData userData);
+}
 \end{lstlisting}

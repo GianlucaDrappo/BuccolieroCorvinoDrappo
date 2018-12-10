@@ -1,5 +1,4 @@
 \section{Overview}
-%describe firewalls and dmz
 
 \begin{figure}[H]
     \centering
@@ -11,7 +10,7 @@
 They will be deployed in a 4-tier client-server architecture, composed by:
 \begin{itemize}
     \item a distributed presentation layer on the Client, that also retrieves information from the smart-watch or fitness band;
-    \item a Web Server for message filtering and forwarding;
+    \item a Web Server for load balancing, failure detection, message filtering and forwarding;
     \item an Application Server that runs the business logic;
     \item a Database Server containing the applications' data.
 \end{itemize}
